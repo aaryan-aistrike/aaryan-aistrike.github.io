@@ -111,13 +111,20 @@
     var feedEl = document.getElementById('atlasFeed');
     var evCountEl = document.getElementById('atlasEvents');
     var arcCountEl = document.getElementById('atlasArcs');
-    var labels = [
-      'Kerberoasting attempt', 'encoded PowerShell', 'WMI lateral movement',
-      'C2 beacon check-in', 'reverse shell spawn', 'credential stuffing',
-      'RDP brute force', 'DNS exfiltration', 'npm postinstall payload',
-      'supply-chain compromise', 'zero-day exploitation', 'privilege escalation',
-      'agentic malware activity', 'OAuth token abuse', 'cloud IAM anomaly',
-      'ransomware precursor', 'AnyDesk/PsExec sequence', 'auth anomaly', 'scan burst'
+
+    // real, sourced campaigns already published on this site - not
+    // fabricated live telemetry. Region pairs are the closest match in this
+    // globe's coarse 7-region geography to what's actually documented in
+    // each write-up (exact attacker/victim geolocation isn't always public,
+    // so these are illustrative placements of real, cited facts, not claims
+    // of precise coordinates)
+    var realEvents = [
+      { text: 'The Gentlemen - RDP/VPN intrusion (Russian-speaking origin, 77 countries hit)', from: 'Europe', to: 'North America' },
+      { text: 'The Gentlemen - AnyDesk/PsExec lateral movement', from: 'Europe', to: 'Asia' },
+      { text: 'ShinyHunters/UNC6240 - PeopleSoft RCE (Oracle, US vendor)', from: 'North America', to: 'Southeast Asia' },
+      { text: 'ShinyHunters/UNC6240 - university campus breach (UK/Malaysia/China)', from: 'North America', to: 'Europe' },
+      { text: 'Sapphire Sleet - npm postinstall payload (Microsoft attribution)', from: 'Asia', to: 'North America' },
+      { text: 'Sapphire Sleet - wallet-extension credential theft', from: 'Asia', to: 'Southeast Asia' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
@@ -125,23 +132,32 @@
     // appears to start from empty space instead of a real point
     function isVisible(vec) { return rotY(vec, rotation)[2] > 0.08; }
 
+    var eventCursor = 0;
+
     function spawnArc() {
       var visible = nodes.filter(function (n) { return isVisible(n.vec); });
       if (visible.length < 2) return;
-      var na = visible[Math.floor(Math.random() * visible.length)];
-      var nb, attempts = 0;
-      // avoid picking two nodes from the same landmass - "North America ->
-      // North America" reads as a bug, not a global activity feed
-      do {
-        nb = visible[Math.floor(Math.random() * visible.length)];
-        attempts++;
-      } while ((nb === na || nb.region === na.region) && attempts < 8);
-      if (nb === na || nb.region === na.region) return;
-      arcs.push({ a: na.vec, b: nb.vec, t: 0, speed: 0.006 + Math.random() * 0.006, life: 1 });
-      eventCount++;
-      if (evCountEl) evCountEl.textContent = eventCount;
-      var label = labels[Math.floor(Math.random() * labels.length)];
-      if (feedEl) feedEl.innerHTML = '<span>[' + new Date().toISOString().substr(11, 8) + ']</span> ' + label + ' <b>' + na.region + ' → ' + nb.region + '</b>';
+
+      // walk the real-events list in order (not random) so every campaign
+      // gets equal airtime, starting from a random offset each page load
+      for (var tries = 0; tries < realEvents.length; tries++) {
+        var ev = realEvents[(eventCursor + tries) % realEvents.length];
+        var fromNodes = visible.filter(function (n) { return n.region === ev.from; });
+        var toNodes = visible.filter(function (n) { return n.region === ev.to; });
+        if (!fromNodes.length || !toNodes.length) continue;
+
+        eventCursor = (eventCursor + tries + 1) % realEvents.length;
+        var na = fromNodes[Math.floor(Math.random() * fromNodes.length)];
+        var nb = toNodes[Math.floor(Math.random() * toNodes.length)];
+
+        arcs.push({ a: na.vec, b: nb.vec, t: 0, speed: 0.006 + Math.random() * 0.006, life: 1 });
+        eventCount++;
+        if (evCountEl) evCountEl.textContent = eventCount;
+        if (feedEl) feedEl.innerHTML = '<span>[' + new Date().toISOString().substr(11, 8) + ']</span> <b>' + ev.text + '</b>';
+        return;
+      }
+      // none of the real events currently have both endpoints visible -
+      // just wait for the globe to rotate rather than spawning anything
     }
 
     // spawn cadence walks a golden-ratio progression rather than a flat
