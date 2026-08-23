@@ -48,6 +48,16 @@
     });
   })();
 
+  // auto-tag content pages (Introduction, detections, actor profiles) for scroll-reveal,
+  // since their markup is raw Markdown output and can't carry a .reveal class by hand
+  (function () {
+    var content = document.querySelector('.page-content');
+    if (!content) return;
+    Array.prototype.forEach.call(content.children, function (el) {
+      el.classList.add('reveal');
+    });
+  })();
+
   // scroll-reveal
   (function () {
     var items = document.querySelectorAll('.reveal');
