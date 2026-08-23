@@ -21,8 +21,11 @@ I'm Aryan, a cybersecurity professional with 3 years of experience in **detectio
 
 ## Experience
 
-**Threat Hunter 2 — AiStrike**
-Behavioral detection design across SIEM/EDR telemetry, detection-as-code, MITRE ATT&CK coverage mapping. Built detections for Kerberoasting, encoded PowerShell, WMI-based lateral movement, and C2 activity, with a focus on false-positive tuning and detection automation via Python/APIs. Also apply AI/LLM tooling directly in the detection workflow — using it to accelerate alert triage, investigation enrichment, and repetitive SOC automation, with validation steps to check AI-generated findings against ground truth before they inform analyst decisions — and track how AI is reshaping the threat landscape itself, from agentic malware to LLM-abuse techniques, as part of ongoing research.
+**Threat Hunter 2 — AiStrike**, May 2026 – Present
+Behavioral detection design across SIEM/EDR telemetry, detection-as-code, and MITRE ATT&CK coverage mapping. Apply AI/LLM tooling directly in the detection workflow — using it to accelerate alert triage, investigation enrichment, and repetitive SOC automation, with validation steps to check AI-generated findings against ground truth before they inform analyst decisions — and track how AI is reshaping the threat landscape itself, from agentic malware to LLM-abuse techniques, as part of ongoing research.
+
+**Threat Researcher 2 — Arctic Wolf**, Sep 2025 – May 2026
+Designed and maintained behavioral detections across SIEM/EDR telemetry using detection-as-code principles, mapped to MITRE ATT&CK to improve coverage and reduce blind spots. Researched adversary techniques and built detections for Kerberoasting, encoded/obfuscated PowerShell, WMI-based lateral movement, and reverse shells/C2 activity. Created detection test cases and simulated attacker techniques in lab environments, collaborated with DFIR and threat intelligence teams to refine detections against real incidents, and automated detection enrichment/validation workflows using Python and APIs.
 
 **Cyber Defense Engineer I — Anko (GCC for Kmart Group Australia)**, Mar 2023 – Sep 2025, Bengaluru
 Incident investigation across endpoint, email, network, and cloud; threat hunting; phishing, malware, privilege escalation, and ransomware investigations. Built Sentinel KQL detection rules, automated IOC workflows, and worked across CrowdStrike, Defender, Darktrace, Proofpoint, and Palo Alto.
