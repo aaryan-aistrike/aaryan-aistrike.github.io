@@ -6,6 +6,19 @@ permalink: /detections/
 <h1>Research</h1>
 <p class="research-intro">Detection write-ups and threat-actor profiles, grounded in public reporting and my own detection engineering work. Grows regularly.</p>
 
+<div class="atlas-panel">
+  <div class="atlas-panel-head">
+    <span class="eyebrow">Signal Atlas &middot; simulated global activity</span>
+    <div class="atlas-stats">
+      <span>EVENTS <b id="atlasEvents">0</b></span>
+      <span>ACTIVE ARCS <b id="atlasArcs">0</b></span>
+    </div>
+  </div>
+  <canvas id="atlasCanvas"></canvas>
+  <div class="atlas-feed"><span id="atlasFeed">&nbsp;</span></div>
+</div>
+<p class="atlas-disclaimer">ILLUSTRATIVE ONLY &mdash; SIMULATED DATA, NOT REAL-TIME THREAT TELEMETRY</p>
+
 <h2>Detections</h2>
 <div class="research-grid">
 {% assign sorted_detections = site.detections | sort: 'title' %}
@@ -34,3 +47,5 @@ permalink: /detections/
 </div>
 
 <p class="research-footnote">&#9997;&#65039; This page keeps growing as I publish more research and detection case studies.</p>
+
+{% include signal-atlas.js %}

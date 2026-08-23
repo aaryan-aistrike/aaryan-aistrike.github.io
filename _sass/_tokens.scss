@@ -25,6 +25,7 @@
     --term-green-rgb: 30, 158, 90;
     --term-green-dim: rgba(30, 158, 90, 0.12);
     --term-green-line: rgba(30, 158, 90, 0.35);
+    --dot: rgba(16, 24, 33, 0.16);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -51,6 +52,7 @@
         --term-green-rgb: 74, 224, 138;
         --term-green-dim: rgba(74, 224, 138, 0.14);
         --term-green-line: rgba(74, 224, 138, 0.4);
+        --dot: rgba(255, 255, 255, 0.16);
     }
 }
 
@@ -77,4 +79,5 @@
     --term-green-rgb: 74, 224, 138;
     --term-green-dim: rgba(74, 224, 138, 0.14);
     --term-green-line: rgba(74, 224, 138, 0.4);
+    --dot: rgba(255, 255, 255, 0.16);
 }
