@@ -21,51 +21,146 @@
       return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
     }
 
-    var beacons = [];
-    for (var i = 0; i < 5; i++) beacons.push(0.12 + i * (0.76 / 4) + (Math.random() * 0.03 - 0.015));
+    function hexToRgb(c) {
+      // supports rgba(...) passthrough or #hex
+      if (c.indexOf('rgb') === 0) {
+        var m = c.match(/[\d.]+/g);
+        return { r: +m[0], g: +m[1], b: +m[2] };
+      }
+      var h = c.replace('#', '');
+      if (h.length === 3) h = h.split('').map(function (x) { return x + x; }).join('');
+      var n = parseInt(h, 16);
+      return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+    }
 
+    // each beacon fires on its own period, with a fast attack / slow decay envelope
+    var beacons = [];
+    for (var i = 0; i < 5; i++) {
+      beacons.push({
+        pos: 0.1 + i * (0.8 / 4) + (Math.random() * 0.02 - 0.01),
+        period: 150 + i * 23 + Math.random() * 20,
+        offset: Math.random() * 300,
+        packet: null
+      });
+    }
+
+    var noiseSeed = Math.random() * 1000;
     var t = 0;
+
     function draw() {
       var w = canvas.width, h = canvas.height;
       ctx.clearRect(0, 0, w, h);
 
-      var baseline = h * 0.62;
+      var baseline = h * 0.64;
+      var gridColor = getColor('--grid-line') || getColor('--border');
       var lineColor = getColor('--border-strong');
-      var accent = getColor('--scan-line');
+      var accentRaw = getColor('--scan-line');
+      var accentTextRaw = getColor('--accent-text');
+      var rgb = hexToRgb(accentTextRaw || accentRaw);
+      var accentSolid = 'rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')';
 
+      // faint horizontal graticule
+      ctx.strokeStyle = gridColor;
+      ctx.lineWidth = 1;
+      for (var gy = 0.18; gy < 1; gy += 0.22) {
+        ctx.beginPath();
+        ctx.moveTo(0, h * gy);
+        ctx.lineTo(w, h * gy);
+        ctx.stroke();
+      }
+
+      // baseline with a subtle noise floor, not a dead-flat line
       ctx.strokeStyle = lineColor;
       ctx.lineWidth = 1 * dpr;
       ctx.beginPath();
-      ctx.moveTo(0, baseline);
-      ctx.lineTo(w, baseline);
+      for (var x = 0; x <= w; x += 6 * dpr) {
+        var n = Math.sin((x + noiseSeed * 40) * 0.04) * 1.2 + Math.sin((x + noiseSeed * 90) * 0.11) * 0.6;
+        var y = baseline + n * dpr;
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
       ctx.stroke();
 
-      beacons.forEach(function (pos) {
-        var x = pos * w;
-        var pulse = 0.55 + 0.45 * Math.sin(t * 0.05 + pos * 20);
-        var spikeH = h * 0.34 * (0.7 + 0.3 * pulse);
-        ctx.strokeStyle = accent;
-        ctx.lineWidth = 1.6 * dpr;
+      beacons.forEach(function (b) {
+        var x = b.pos * w;
+        var phase = ((t + b.offset) % b.period) / b.period; // 0..1 per cycle
+        // fast attack, slower exponential-ish decay envelope
+        var env;
+        if (phase < 0.06) {
+          env = phase / 0.06;
+        } else {
+          env = Math.pow(1 - (phase - 0.06) / (1 - 0.06), 1.6);
+        }
+        var restH = h * 0.05;
+        var spikeH = restH + (h * 0.4 - restH) * env;
+        var glow = 6 + 14 * env;
+
+        // spike line with glow
+        ctx.save();
+        ctx.shadowColor = accentSolid;
+        ctx.shadowBlur = glow;
+        ctx.strokeStyle = accentSolid;
+        ctx.lineWidth = (1.4 + 1.2 * env) * dpr;
         ctx.beginPath();
         ctx.moveTo(x, baseline);
         ctx.lineTo(x, baseline - spikeH);
         ctx.stroke();
 
+        // apex dot
         ctx.beginPath();
-        ctx.arc(x, baseline - spikeH, 2 * dpr, 0, Math.PI * 2);
-        ctx.fillStyle = accent;
+        ctx.arc(x, baseline - spikeH, (1.6 + 1.4 * env) * dpr, 0, Math.PI * 2);
+        ctx.fillStyle = accentSolid;
         ctx.fill();
+        ctx.restore();
+
+        // expanding "ping" ring right at the fire moment
+        if (phase < 0.35) {
+          var ringT = phase / 0.35;
+          var ringR = (4 + ringT * 26) * dpr;
+          ctx.save();
+          ctx.globalAlpha = (1 - ringT) * 0.5;
+          ctx.strokeStyle = accentSolid;
+          ctx.lineWidth = 1.2 * dpr;
+          ctx.beginPath();
+          ctx.arc(x, baseline - spikeH, ringR, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        // launch a packet toward the destination when the beacon fires
+        if (phase < 0.03 && (!b.packet || b.packet.done)) {
+          b.packet = { start: x, progress: 0, done: false };
+        }
+        if (b.packet && !b.packet.done) {
+          b.packet.progress += 0.012;
+          if (b.packet.progress >= 1) {
+            b.packet.done = true;
+          } else {
+            var px = b.packet.start + (w - b.packet.start) * b.packet.progress;
+            var py = baseline - (1 - b.packet.progress) * 4 * dpr;
+            var packetAlpha = Math.sin(Math.PI * b.packet.progress);
+            ctx.save();
+            ctx.globalAlpha = packetAlpha;
+            ctx.shadowColor = accentSolid;
+            ctx.shadowBlur = 8;
+            ctx.fillStyle = accentSolid;
+            ctx.beginPath();
+            ctx.arc(px, py, 1.8 * dpr, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+        }
       });
 
+      // soft glowing sweep band
       if (!reduceMotion) {
-        var sweepX = ((t * 1.1) % (w + 200)) - 100;
-        var grad = ctx.createLinearGradient(sweepX - 60, 0, sweepX + 60, 0);
+        var sweepX = ((t * 1.3) % (w + 240)) - 120;
+        var grad = ctx.createLinearGradient(sweepX - 90, 0, sweepX + 90, 0);
         grad.addColorStop(0, 'transparent');
-        grad.addColorStop(0.5, accent);
+        grad.addColorStop(0.5, accentRaw);
         grad.addColorStop(1, 'transparent');
-        ctx.globalAlpha = 0.35;
+        ctx.globalAlpha = 0.22;
         ctx.fillStyle = grad;
-        ctx.fillRect(sweepX - 60, 0, 120, h);
+        ctx.fillRect(sweepX - 90, 0, 180, h);
         ctx.globalAlpha = 1;
       }
 
