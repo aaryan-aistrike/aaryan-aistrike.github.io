@@ -148,38 +148,11 @@
             // leave opacity explicitly at 1 (not '') - the base CSS rule is opacity:0,
             // clearing back to it here would make the text vanish right after revealing
             el.style.opacity = '1';
-            el.classList.add('spotlight-ready');
-            updateSpotlight();
           });
         });
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
     items.forEach(function (el) { io.observe(el); });
-
-    // spotlight: once a section has entered, it keeps dimming/brightening as you
-    // scroll - only the section nearest the viewport center sits at full strength,
-    // so the reader's eye is always drawn to just one section at a time without
-    // ever hiding or shortening anything
-    var raf;
-    function updateSpotlight() {
-      var centerY = window.innerHeight / 2;
-      var falloff = window.innerHeight * 0.6;
-      items.forEach(function (el) {
-        if (!el.classList.contains('spotlight-ready')) return;
-        var rect = el.getBoundingClientRect();
-        var elCenter = rect.top + rect.height / 2;
-        var dist = Math.min(1, Math.abs(elCenter - centerY) / falloff);
-        var eased = dist * dist; // ease-in falloff, stays brighter longer near center
-        el.style.opacity = (1 - eased * 0.68).toFixed(3);
-        el.style.transform = 'scale(' + (1 - eased * 0.035).toFixed(3) + ')';
-      });
-      raf = null;
-    }
-    window.addEventListener('scroll', function () {
-      if (raf) return;
-      raf = requestAnimationFrame(updateSpotlight);
-    }, { passive: true });
-    window.addEventListener('resize', updateSpotlight);
   })();
 </script>
