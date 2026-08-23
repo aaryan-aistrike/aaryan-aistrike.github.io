@@ -46,9 +46,7 @@
 }
 
 .tile-detections { grid-column: span 4; grid-row: span 2; }
-.tile-role { grid-column: span 2; grid-row: span 2; }
-.tile-frameworks { grid-column: span 3; }
-.tile-stack { grid-column: span 3; }
+.tile-frameworks { grid-column: span 2; grid-row: span 2; }
 .tile-contact { grid-column: span 6; }
 
 .tile-label {
@@ -220,6 +218,6 @@
 @include media-query($mobile) {
     .section { padding: 64px 20px; }
     .bento { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .tile-detections, .tile-role, .tile-frameworks, .tile-stack, .tile-contact { grid-column: span 2; grid-row: auto; }
+    .tile-detections, .tile-frameworks, .tile-contact { grid-column: span 2; grid-row: auto; }
     .contact-inner { flex-direction: column; align-items: flex-start; }
 }

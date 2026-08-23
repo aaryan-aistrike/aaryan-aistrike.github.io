@@ -20,6 +20,7 @@
     --grid-line: rgba(16, 24, 33, 0.06);
     --scan-line: rgba(179, 107, 0, 0.5);
     --code-bg: #FFFFFF;
+    --accent-rgb: 179, 107, 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,6 +42,7 @@
         --grid-line: rgba(255, 255, 255, 0.05);
         --scan-line: rgba(255, 176, 32, 0.55);
         --code-bg: #0D1218;
+        --accent-rgb: 255, 176, 32;
     }
 }
 
@@ -62,4 +64,5 @@
     --grid-line: rgba(255, 255, 255, 0.05);
     --scan-line: rgba(255, 176, 32, 0.55);
     --code-bg: #0D1218;
+    --accent-rgb: 255, 176, 32;
 }
