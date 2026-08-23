@@ -16,9 +16,18 @@
     }
 
     function resize() {
-      var rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
+      // deferred to the next paint frame so we read dimensions after layout
+      // (e.g. the sidebar/main grid collapsing at the $desktop breakpoint)
+      // has actually settled, not mid-reflow
+      requestAnimationFrame(function () {
+        var rect = canvas.getBoundingClientRect();
+        // a transient 0-size read (common during a resize/breakpoint
+        // transition) would collapse the whole globe to a single point -
+        // skip it and just wait for the next real resize event instead
+        if (rect.width < 10 || rect.height < 10) return;
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+      });
     }
     resize();
     window.addEventListener('resize', resize);
@@ -145,6 +154,15 @@
 
     function draw() {
       var w = canvas.width, h = canvas.height;
+      // defense in depth: never let a degenerate canvas size (mid-resize,
+      // mid-reflow) propagate into the projection math - just skip the
+      // frame and try again next tick instead of drawing garbage or
+      // throwing and killing the animation loop
+      if (w < 10 || h < 10) {
+        rotation += ROT_SPEED;
+        if (!reduceMotion) requestAnimationFrame(draw);
+        return;
+      }
       ctx.clearRect(0, 0, w, h);
 
       var cx = w / 2, cy = h / 2;
