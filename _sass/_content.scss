@@ -78,6 +78,10 @@
     &:last-child { margin-bottom: 0; }
     h1, h2 { margin-top: 0; }
     .eyebrow { justify-content: flex-start; margin-bottom: 10px; }
+
+    &.spotlight-ready {
+        transition: opacity 0.25s ease, transform 0.25s ease;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
