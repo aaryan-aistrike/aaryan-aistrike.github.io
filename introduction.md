@@ -6,14 +6,29 @@ permalink: /introduction/
 
 # Introduction
 
-I’m Aryan, a Cybersecurity professional with hands-on experience in **threat detection, security operations, and cloud security engineering**.  
+I'm Aryan, a cybersecurity professional with 3 years of experience in **detection engineering, threat hunting, and incident response** across enterprise and cloud environments. I specialize in behavioral detection development, SIEM/EDR telemetry analysis, and MITRE ATT&CK–mapped detections.
 
-My journey so far:  
-- 🎓 Bachelor's in Computer Science Engineering (8.3 CGPA).  
-- 🔐 2+ years in SOC & Security Engineering, defending enterprises from evolving cyber threats.  
-- ⚡ Skilled in EDR (CrowdStrike, Cortex XDR, Microsoft Defender), SIEM (Sentinel, Splunk, CrowdStrike NG SIEM), and NDR (Darktrace).  
-- 🤖 Passionate about automation, building SOAR workflows, and integrating threat intel into detection pipelines.  
-- 🏆 Recognition: Runner-up at EY GDS Hackpions 4.0 for an OCR-based solution.  
+## Core competencies
 
-Beyond security, I love exploring **machine learning applications**, mentoring peers, and experimenting with **Red vs Blue tradecraft** to sharpen detection strategies.  
+- **Detection Engineering** — behavioral detections, detection-as-code, Sigma, false-positive tuning, adversary emulation
+- **Threat Hunting & DFIR** — endpoint forensics, incident investigations, root cause analysis, IOC/behavioral hunting
+- **SIEM & EDR** — Microsoft Sentinel, CrowdStrike, Defender for Endpoint, Cortex, Darktrace
+- **Threat frameworks** — MITRE ATT&CK, Cyber Kill Chain, threat modeling
+- **Cloud & identity** — AWS (EC2, S3, IAM, GuardDuty), Azure (Entra ID, Logic Apps, Graph API)
+- **Programming/automation** — Python, PowerShell, Bash, KQL, API integrations
 
+## Experience
+
+**Threat Hunter 2 — AiStrike**
+Behavioral detection design across SIEM/EDR telemetry, detection-as-code, MITRE ATT&CK coverage mapping. Built detections for Kerberoasting, encoded PowerShell, WMI-based lateral movement, and C2 activity, with a focus on false-positive tuning and detection automation via Python/APIs.
+
+**Cyber Defense Engineer I — Anko (GCC for Kmart Group Australia)**, Mar 2023 – Sep 2025, Bengaluru
+Incident investigation across endpoint, email, network, and cloud; threat hunting; phishing, malware, privilege escalation, and ransomware investigations. Built Sentinel KQL detection rules, automated IOC workflows, and worked across CrowdStrike, Defender, Darktrace, Proofpoint, and Palo Alto.
+
+## Education & achievements
+
+- BE Computer Science, Visvesvaraya Technological University, 2019–2023 (8.3 CGPA)
+- Runner-up (2nd of 1,572 teams), EY GDS Hackpions 4.0 — OCR-based data-extraction solution (Python/Pandas/Matplotlib) with ML pattern classification
+- Certifications: Cybrary Prep CompTIA Security+, AWS Academy Graduate, Cybrary Fundamentals of Cybersecurity Architecture, NVIDIA Fundamentals of Deep Learning
+
+Beyond work, I enjoy exploring **machine learning applications**, mentoring peers, and experimenting with **red vs. blue tradecraft** to sharpen detection strategies.

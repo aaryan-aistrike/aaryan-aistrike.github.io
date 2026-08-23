@@ -1,6 +1,13 @@
 <footer class="site-footer">
     {{ site.description }}<br />
-<!-- 
+    {% if site.social %}
+    <div class="social-links">
+        {% if site.social.email %}<a href="mailto:{{ site.social.email }}">Email</a>{% endif %}
+        {% if site.social.linkedin %} :: <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>{% endif %}
+        {% if site.social.github %} :: <a href="{{ site.social.github }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
+    </div>
+    {% endif %}
+<!--
     <!-- {% if site.sourcecode %}
      :: <a href="{{ site.sourcecode }}">Website source</a>
     {% endif %} -->

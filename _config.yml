@@ -1,17 +1,22 @@
 title: Aryan
-description: Thanks for visiting
-sourcecode: "http://aa-ryan.github.io"
+description: "Threat hunter & detection engineer — behavioral detections, MITRE ATT&CK, DFIR."
+sourcecode: "http://aaryan-aistrike.github.io"
 
 permalink: blog/:year/:month/:day/:title
 exclude: ["Makefile", "README.md"]
 
-url: "https://aa-ryan.github.io"     # the base hostname & protocol for your site
+url: "https://aaryan-aistrike.github.io"     # the base hostname & protocol for your site
 baseurl: ""                           # the subpath of your site, e.g. /blog
 
 author:
-    name:
+    name: Aryan
     facebook:
     scholar:
+
+social:
+    email: mail9aryan@gmail.com
+    linkedin: "https://linkedin.com/in/aryan-31ab60191"
+    github: "https://github.com/aaryan-aistrike"
 
 # Build settings
 markdown: kramdown
