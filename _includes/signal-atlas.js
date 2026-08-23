@@ -1,6 +1,8 @@
 <script>
-  // Signal Atlas: decorative rotating-globe visualization for the Research
-  // page. Illustrative only - simulated events, not real threat telemetry.
+  // Signal Atlas: rotating-globe visualization for the Research page,
+  // showing real sourced facts from the site's published research.
+  // Geography is illustrative (a coarse 7-region model), not pinpoint-
+  // accurate, and this is not live/real-time telemetry.
   (function () {
     var canvas = document.getElementById('atlasCanvas');
     if (!canvas) return;
@@ -15,22 +17,37 @@
       var n = parseInt(h, 16); return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
     }
 
-    function resize() {
-      // deferred to the next paint frame so we read dimensions after layout
-      // (e.g. the sidebar/main grid collapsing at the $desktop breakpoint)
-      // has actually settled, not mid-reflow
-      requestAnimationFrame(function () {
-        var rect = canvas.getBoundingClientRect();
-        // a transient 0-size read (common during a resize/breakpoint
-        // transition) would collapse the whole globe to a single point -
-        // skip it and just wait for the next real resize event instead
-        if (rect.width < 10 || rect.height < 10) return;
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-      });
+    // only touch canvas.width/height when the size actually changed - on
+    // mobile, scrolling toggles the browser's address bar which fires
+    // window 'resize' events without the canvas's real box size changing;
+    // resetting the backing store on every one of those causes visible
+    // jank/reflow while scrolling
+    function applySize(w, h) {
+      if (w < 10 || h < 10) return;
+      var newW = Math.round(w * dpr), newH = Math.round(h * dpr);
+      if (canvas.width === newW && canvas.height === newH) return;
+      canvas.width = newW;
+      canvas.height = newH;
     }
-    resize();
-    window.addEventListener('resize', resize);
+
+    if ('ResizeObserver' in window) {
+      // fires only on genuine element box-size changes, not on mobile
+      // address-bar show/hide or other viewport-only quirks
+      var ro = new ResizeObserver(function (entries) {
+        var box = entries[0].contentRect;
+        applySize(box.width, box.height);
+      });
+      ro.observe(canvas);
+    } else {
+      var resize = function () {
+        requestAnimationFrame(function () {
+          var rect = canvas.getBoundingClientRect();
+          applySize(rect.width, rect.height);
+        });
+      };
+      resize();
+      window.addEventListener('resize', resize);
+    }
 
     // rotating globe: continents as rough lat/lon regions, sampled into dots
     // on the sphere, projected orthographically each frame as it spins.
