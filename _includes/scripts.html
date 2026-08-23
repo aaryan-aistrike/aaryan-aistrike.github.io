@@ -131,8 +131,12 @@
         if (!entry.isIntersecting) return;
         io.unobserve(entry.target);
         var el = entry.target;
+        // scale the entrance distance down on narrow screens - the same 90-230px
+        // throw that reads as a subtle swoop on desktop is a huge, chaotic-looking
+        // fraction of a ~390px phone viewport otherwise
+        var distanceScale = Math.min(1, window.innerWidth / 700);
         var angle = Math.random() * Math.PI * 2;
-        var distance = 90 + Math.random() * 140;
+        var distance = (90 + Math.random() * 140) * distanceScale;
         var fromX = Math.cos(angle) * distance;
         var fromY = Math.sin(angle) * distance * 0.5;
         var fromRot = (Math.random() * 10) - 5;

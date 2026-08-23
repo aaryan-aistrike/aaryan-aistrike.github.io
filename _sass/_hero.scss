@@ -114,7 +114,16 @@
 
 @include media-query($mobile) {
     .hero-inner { padding: 64px 20px 0; }
-    .scope { margin-top: 40px; height: 160px; }
+    .scope { margin-top: 40px; height: 190px; }
     .hero-cta { flex-direction: column; }
     .btn { justify-content: center; }
+
+    // stack the two scope labels instead of crowding them onto one line
+    .scope-label, .scope-label-r {
+        left: 20px;
+        right: 20px;
+        text-align: left;
+        font-size: 10px;
+    }
+    .scope-label-r { top: 32px; text-align: left; }
 }
