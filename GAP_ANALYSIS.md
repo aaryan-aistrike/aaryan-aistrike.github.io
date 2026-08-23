@@ -106,7 +106,7 @@ Resume gives a tighter professional summary than what's live. Candidate material
 ## 8. Work completed this session (2026-08-23)
 
 - `_config.yml`: filled `author.name`, rewrote `description`, added `social:` block (email/linkedin/github — github URL updated to the renamed `aaryan-aistrike` account).
-- `_includes/footer.html`: added a social-links block (email/LinkedIn/GitHub) driven by `site.social`, guarded with `{% if %}` so it's a no-op if unset.
+- `_includes/footer.html`: added a social-links block (email/LinkedIn/GitHub) driven by `site.social`, guarded with an if-conditional so it's a no-op if unset.
 - `introduction.md`: rewritten using resume content — summary, core competencies, both roles (AiStrike current, Anko previous), education/achievements/certs.
 - Added 4 new `_detections/` entries, generic/public-technique-based (no client data), matching the existing `ermac-v3.md` Sigma-rule template:
   - `kerberoasting.md`

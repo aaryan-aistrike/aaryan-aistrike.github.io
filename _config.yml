@@ -3,7 +3,7 @@ description: "Threat hunter & detection engineer — behavioral detections, MITR
 sourcecode: "http://aaryan-aistrike.github.io"
 
 permalink: blog/:year/:month/:day/:title
-exclude: ["Makefile", "README.md"]
+exclude: ["Makefile", "README.md", "GAP_ANALYSIS.md"]
 
 url: "https://aaryan-aistrike.github.io"     # the base hostname & protocol for your site
 baseurl: ""                           # the subpath of your site, e.g. /blog
