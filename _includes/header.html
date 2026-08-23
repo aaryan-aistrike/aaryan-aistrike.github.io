@@ -1,6 +1,6 @@
 <nav class="nav" id="siteNav">
     <div class="nav-inner">
-        <a href="{{ site.baseurl }}/" class="nav-brand">ARYAN <span>// THREAT HUNTER</span></a>
+        <a href="{{ site.baseurl }}/" class="nav-brand">ARYAN <span>// THREAT RESEARCHER</span></a>
         <ul class="nav-links">
             {% for item in site.data.menu %}
             <li><a href="{{ item.href | prepend: site.baseurl }}" class="{% if page.url == item.href %}current{% endif %}">{{ item.title }}</a></li>
