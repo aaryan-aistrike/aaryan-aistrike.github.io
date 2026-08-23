@@ -5,41 +5,26 @@
 }
 
 // break out of .page-content's narrow reading column, then re-center at a
-// wider max-width - same two-layer trick used for the sticky-stack layout
-.research-breakout {
+// wider max-width so the globe gets real room instead of a cramped sidebar -
+// same two-layer trick used elsewhere on the site, but centered, not split
+// into columns, per feedback: keep the globe in the middle only
+.atlas-breakout {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-}
-
-.research-layout {
-    max-width: 74em;
-    margin: 0 auto;
     padding: 0 32px;
-    display: grid;
-    grid-template-columns: minmax(240px, 300px) 1fr;
-    gap: 40px;
-    align-items: start;
-}
-
-.atlas-side {
-    position: sticky;
-    top: 76px; // just below the sticky nav
-}
-
-@include media-query($desktop) {
-    .research-layout { grid-template-columns: 1fr; }
-    .atlas-side { position: static; margin-bottom: 8px; }
+    box-sizing: border-box;
 }
 
 .atlas-panel {
     position: relative;
+    max-width: 56em;
+    margin: 0 auto 12px;
     background: var(--bg-hero);
     border: 1px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
     box-shadow: var(--shadow);
-    margin-bottom: 12px;
 }
 
 .atlas-panel-head {
@@ -100,12 +85,13 @@
 }
 
 .atlas-disclaimer {
+    max-width: 56em;
+    margin: 0 auto 40px;
     font-family: $mono-font-family;
     font-size: 10.5px;
     letter-spacing: 0.04em;
     color: var(--text-faint);
     text-align: center;
-    margin: 0 0 40px;
 }
 
 @media (prefers-reduced-motion: reduce) {
