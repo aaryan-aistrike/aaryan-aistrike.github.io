@@ -1,0 +1,77 @@
+<script>
+  // beacon scope animation (homepage hero)
+  (function () {
+    var canvas = document.getElementById('scopeCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function getColor(varName) {
+      return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+    }
+
+    var beacons = [];
+    for (var i = 0; i < 5; i++) beacons.push(0.12 + i * (0.76 / 4) + (Math.random() * 0.03 - 0.015));
+
+    var t = 0;
+    function draw() {
+      var w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      var baseline = h * 0.62;
+      var lineColor = getColor('--border-strong');
+      var accent = getColor('--scan-line');
+
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = 1 * dpr;
+      ctx.beginPath();
+      ctx.moveTo(0, baseline);
+      ctx.lineTo(w, baseline);
+      ctx.stroke();
+
+      beacons.forEach(function (pos) {
+        var x = pos * w;
+        var pulse = 0.55 + 0.45 * Math.sin(t * 0.05 + pos * 20);
+        var spikeH = h * 0.34 * (0.7 + 0.3 * pulse);
+        ctx.strokeStyle = accent;
+        ctx.lineWidth = 1.6 * dpr;
+        ctx.beginPath();
+        ctx.moveTo(x, baseline);
+        ctx.lineTo(x, baseline - spikeH);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(x, baseline - spikeH, 2 * dpr, 0, Math.PI * 2);
+        ctx.fillStyle = accent;
+        ctx.fill();
+      });
+
+      if (!reduceMotion) {
+        var sweepX = ((t * 1.1) % (w + 200)) - 100;
+        var grad = ctx.createLinearGradient(sweepX - 60, 0, sweepX + 60, 0);
+        grad.addColorStop(0, 'transparent');
+        grad.addColorStop(0.5, accent);
+        grad.addColorStop(1, 'transparent');
+        ctx.globalAlpha = 0.35;
+        ctx.fillStyle = grad;
+        ctx.fillRect(sweepX - 60, 0, 120, h);
+        ctx.globalAlpha = 1;
+      }
+
+      t += 1;
+      if (!reduceMotion) requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+</script>

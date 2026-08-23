@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include head.html %}
+
+  <body>
+    {% include header.html %}
+
+    <div class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-inner">
+        <p class="eyebrow">THREAT HUNTER 2 &middot; AISTRIKE</p>
+        <h1>Finding <em>signal</em><br>in the noise.</h1>
+        <p class="hero-sub">Behavioral detection engineering, threat hunting, and DFIR across enterprise and cloud telemetry — mapped to MITRE ATT&amp;CK, built to survive contact with real adversaries.</p>
+        <div class="hero-cta">
+          <a href="{{ '/detections/' | prepend: site.baseurl }}" class="btn btn-primary">View research &rarr;</a>
+          <a href="mailto:{{ site.social.email }}" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+      <div class="scope">
+        <span class="scope-label">SRC <b>10.44.2.118</b> &rarr; DST <b>gate[.]php</b></span>
+        <span class="scope-label-r">BEACON INTERVAL <b>60s &plusmn;4%</b></span>
+        <canvas id="scopeCanvas"></canvas>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Overview</h2>
+        <p>What I've been building and where I've applied it — across telemetry sources, frameworks, and tooling.</p>
+      </div>
+
+      <div class="bento">
+        <div class="tile tile-detections reveal">
+          <span class="tile-label">Latest research</span>
+          <ul class="det-list">
+            {% assign recent_detections = site.detections | reverse | slice: 0, 4 %}
+            {% for d in recent_detections %}
+            <li>
+              <a href="{{ d.url | prepend: site.baseurl }}" class="det-row">
+                <div>
+                  <div class="det-title">{{ d.title }}</div>
+                </div>
+                <span class="det-arrow">&rarr;</span>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="tile tile-role reveal">
+          <span class="tile-label">Currently</span>
+          <div class="role-name">Threat Hunter 2</div>
+          <div class="role-org">AiStrike</div>
+          <div class="role-meta">
+            <div class="role-meta-row"><span>SINCE</span><span>May 2026</span></div>
+            <div class="role-meta-row"><span>FOCUS</span><span>Behavioral detections</span></div>
+            <div class="role-meta-row"><span>MAPPED TO</span><span>MITRE ATT&amp;CK</span></div>
+          </div>
+        </div>
+
+        <div class="tile tile-frameworks reveal">
+          <span class="tile-label">Frameworks &amp; methods</span>
+          <div class="chip-cloud">
+            <span class="chip accent">MITRE ATT&amp;CK</span>
+            <span class="chip accent">Sigma</span>
+            <span class="chip">Cyber Kill Chain</span>
+            <span class="chip">Detection-as-code</span>
+            <span class="chip">Threat modeling</span>
+          </div>
+        </div>
+
+        <div class="tile tile-stack reveal">
+          <span class="tile-label">Telemetry &amp; tooling</span>
+          <div class="chip-cloud">
+            <span class="chip">Microsoft Sentinel</span>
+            <span class="chip">CrowdStrike</span>
+            <span class="chip">Defender for Endpoint</span>
+            <span class="chip">Cortex</span>
+            <span class="chip">Darktrace</span>
+            <span class="chip">KQL</span>
+          </div>
+        </div>
+
+        <div class="tile tile-contact reveal">
+          <div class="contact-inner">
+            <div class="contact-copy">
+              <h3>Let's talk detections.</h3>
+              <p>Open to conversations on threat hunting, detection engineering, and DFIR.</p>
+            </div>
+            <div class="contact-links">
+              {% if site.social.email %}
+              <a href="mailto:{{ site.social.email }}" aria-label="Email" title="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              </a>
+              {% endif %}
+              {% if site.social.linkedin %}
+              <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.25h4.5V23h-4.5zM8.5 8.25h4.31v2.01h.06c.6-1.13 2.07-2.33 4.26-2.33 4.55 0 5.39 3 5.39 6.9V23h-4.5v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.66 1.8-2.66 3.65V23H8.5z"/></svg>
+              </a>
+              {% endif %}
+              {% if site.social.github %}
+              <a href="{{ site.social.github }}" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.93c.58.1.79-.25.79-.56v-2.16c-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.02 1.76 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.8 1.18 1.83 1.18 3.09 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <p>Two roles, one thread — from SOC investigations to detection engineering at scale.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-row reveal">
+          <div class="tl-when">MAY 2026 — PRESENT</div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-role">Threat Hunter 2</div>
+            <div class="tl-org">AiStrike</div>
+            <div class="tl-desc">Behavioral detection design across SIEM/EDR telemetry, detection-as-code, and ATT&amp;CK coverage mapping — Kerberoasting, encoded PowerShell, WMI lateral movement, and C2 activity. Also apply AI/LLM tooling to alert triage and investigation enrichment, and research AI-driven attack techniques.</div>
+          </div>
+        </div>
+        <div class="tl-row reveal">
+          <div class="tl-when">MAR 2023 — SEP 2025</div>
+          <div class="tl-line"><div class="tl-dot" style="border-color:var(--border-strong)"></div></div>
+          <div class="tl-content">
+            <div class="tl-role">Cyber Defense Engineer I</div>
+            <div class="tl-org">Anko (GCC for Kmart Group Australia) &middot; Bengaluru</div>
+            <div class="tl-desc">Endpoint, email, network, and cloud incident investigation; Sentinel KQL detection rules; IOC automation across CrowdStrike, Defender, Darktrace, and Proofpoint.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% include footer.html %}
+    {% include analytics.html %}
+    {% include scripts.html %}
+    {% include scope-canvas.html %}
+  </body>
+
+</html>

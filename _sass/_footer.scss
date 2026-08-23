@@ -1,23 +1,27 @@
 .site-footer {
-    font-size: $vsmall_font_size;
-    color: $text-light-color;
-    border-top: 1px solid $line-color;
-    padding-top: $spacing-unit;
-    float: none;
-    margin-left: auto;
-    margin-right:auto;
-    margin-top:  0;
-    margin-bottom:$spacing-unit;
-    text-align: center;
-    @extend %clearfix;
+    border-top: 1px solid var(--border);
+    padding: 28px 32px;
 }
 
-.site-footer a {
-    color: inherit;
-    text-decoration: underline;
+.footer-inner {
+    max-width: 74em;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12.5px;
+    color: var(--text-faint);
 }
 
-.site-footer a:hover {
-    color: $url-hover-color;
-    text-decoration: underline;
+.footer-inner a {
+    color: var(--text-faint);
+    text-decoration: none;
+    &:hover { color: var(--text-muted); text-decoration: none; }
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
 }

@@ -1,0 +1,65 @@
+// ============ DESIGN TOKENS ============
+// Light palette (default). Dark palette applied via prefers-color-scheme
+// and overridden again via [data-theme] so the manual toggle always wins.
+
+:root {
+    --bg: #F5F7F9;
+    --bg-hero: #F0F3F6;
+    --surface: #FFFFFF;
+    --surface-2: #EDF1F4;
+    --border: rgba(16, 24, 33, 0.10);
+    --border-strong: rgba(16, 24, 33, 0.16);
+    --text: #10151B;
+    --text-muted: #57626F;
+    --text-faint: #8A93A0;
+    --accent: #B36B00;
+    --accent-text: #7A4900;
+    --accent-dim: rgba(179, 107, 0, 0.10);
+    --accent-line: rgba(179, 107, 0, 0.35);
+    --shadow: 0 1px 2px rgba(16,24,33,0.04), 0 12px 32px -16px rgba(16,24,33,0.18);
+    --grid-line: rgba(16, 24, 33, 0.06);
+    --scan-line: rgba(179, 107, 0, 0.5);
+    --code-bg: #FFFFFF;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #0A0E13;
+        --bg-hero: #0C1118;
+        --surface: #11161D;
+        --surface-2: #171D25;
+        --border: rgba(255, 255, 255, 0.08);
+        --border-strong: rgba(255, 255, 255, 0.14);
+        --text: #EEF2F6;
+        --text-muted: #97A2AF;
+        --text-faint: #626D7A;
+        --accent: #FFB020;
+        --accent-text: #FFC15A;
+        --accent-dim: rgba(255, 176, 32, 0.12);
+        --accent-line: rgba(255, 176, 32, 0.4);
+        --shadow: 0 1px 0 rgba(255,255,255,0.03), 0 24px 48px -24px rgba(0,0,0,0.6);
+        --grid-line: rgba(255, 255, 255, 0.05);
+        --scan-line: rgba(255, 176, 32, 0.55);
+        --code-bg: #0D1218;
+    }
+}
+
+:root[data-theme="dark"] {
+    --bg: #0A0E13;
+    --bg-hero: #0C1118;
+    --surface: #11161D;
+    --surface-2: #171D25;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --text: #EEF2F6;
+    --text-muted: #97A2AF;
+    --text-faint: #626D7A;
+    --accent: #FFB020;
+    --accent-text: #FFC15A;
+    --accent-dim: rgba(255, 176, 32, 0.12);
+    --accent-line: rgba(255, 176, 32, 0.4);
+    --shadow: 0 1px 0 rgba(255,255,255,0.03), 0 24px 48px -24px rgba(0,0,0,0.6);
+    --grid-line: rgba(255, 255, 255, 0.05);
+    --scan-line: rgba(255, 176, 32, 0.55);
+    --code-bg: #0D1218;
+}

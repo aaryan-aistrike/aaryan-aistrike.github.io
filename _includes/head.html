@@ -10,10 +10,22 @@
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
-    <link href='https://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
-    <!--网页标题左侧显示 & 收藏夹-->
-    <link rel="icon" href="/images/web_logo.jpg" type="image/jpg">
-    <link rel="shortcut icon" href="/images/web_logo.jpg" type="image/jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%230A0E13'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23FFB020'/%3E%3Cpath d='M12 3v3M12 18v3M3 12h3M18 12h3' stroke='%23FFB020' stroke-width='1.5'/%3E%3C/svg%3E" type="image/svg+xml">
+
+    <script>
+        (function () {
+            try {
+                var pref = localStorage.getItem('theme-pref');
+                if (pref === 'light' || pref === 'dark') {
+                    document.documentElement.setAttribute('data-theme', pref);
+                }
+            } catch (e) {}
+        })();
+    </script>
 
     {% if site.google_analytics and jekyll.environment == 'production' %}
     {% include analytics.html %}

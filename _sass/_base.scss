@@ -1,166 +1,141 @@
-//  Reset some basic elements
-body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
-dl, dd, ol, ul, figure {
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; }
 
 html {
     overflow-y: scroll;
-}
-
-// Basic styling
-body {
-    font-family: $base-font-family;
-    font-size:   $base-font-size;
-    line-height: $base-line-height;
-    color:       $text-color;
-    background-color: $background;
-    margin: 0 $spacing-unit/2;
     -webkit-text-size-adjust: 100%;
 }
 
+body {
+    margin: 0;
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    color: var(--text);
+    background-color: var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
 
-// Set `margin-bottom` to maintain vertical rhythm
-h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
-ul, ol, dl, figure,
-%vertical-rhythm {
-    margin-bottom: $spacing-unit/2;
+h1, h2, h3, h4, h5, h6 {
+    font-family: $display-font-family;
+    font-weight: 700;
+    margin: 0 0 0.5em;
+    text-wrap: balance;
+}
+
+p, ul, ol, dl, blockquote, pre, figure {
+    margin: 0 0 $spacing-unit * 0.7;
 }
 
 hr {
     display: block;
-    margin: 0.5em auto;
-    border-style: inset;
-    border-top: 1px solid $line-color;
-    border-bottom: none;
-
+    margin: $spacing-unit 0;
+    border: none;
+    border-top: 1px solid var(--border);
 }
 
-// Images
 img {
     max-width: 100%;
-    margin: auto auto;
     vertical-align: middle;
-    border-radius: 25px;
-    // background-size: 215px;
-    // background-repeat: no-repeat;
-    // background-position-y: 9%;
-}
-
-// Figures
-figure > img {
-    display: block;
 }
 
 figcaption {
     font-size: $small-font-size;
+    color: var(--text-muted);
 }
 
-//  Lists
 ul, ol {
-    margin-left: $spacing-unit;
+    padding-left: 1.3em;
 }
 
-li {
-    > ul,
-    > ol {
-         margin-bottom: 0;
-    }
+li > ul, li > ol {
+    margin-bottom: 0;
 }
 
-//  Headings
-h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-}
-
-// Links
 a {
-    color: $url-color;
+    color: var(--accent-text);
     text-decoration: none;
-    &:hover {
-        color: $url-hover-color;
-        text-decoration: none;
-    }
+    &:hover { text-decoration: underline; }
 }
 
-// Blockquotes
+::selection {
+    background: var(--accent-dim);
+    color: var(--accent-text);
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
 blockquote {
-    background-color: $dark-background;
-    border-left: 4px solid darken($line-color, 66%);
-    padding-left:   1.0em;
-    padding-right:  0.8em;
-    padding-top:    0.8em;
-    padding-bottom: 0.001em;
+    border-left: 3px solid var(--accent-line);
+    background: var(--surface-2);
+    padding: 0.8em 1em;
     font-style: italic;
-    > :last-child {
-        margin-bottom: 0;
-    }
-}
-
-// Code formatting
-pre, code {
-    border: 1px solid $line-color;
-    border-radius: 3px;
-    background-color: $dark-background;
-    font-family: monospace;
-    font-size: $small-font-size;
+    color: var(--text-muted);
+    > :last-child { margin-bottom: 0; }
 }
 
 code {
-    padding: 1px 5px;
+    font-family: $mono-font-family;
+    font-size: $small-font-size;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.1em 0.4em;
 }
 
 pre {
-    padding: 8px 12px;
-    overflow-x: scroll;
+    font-family: $mono-font-family;
+    overflow-x: auto;
+    border-radius: 8px;
 
     > code {
         border: 0;
-        padding-right: 0;
-        padding-left: 0;
+        padding: 0;
+        background: transparent;
     }
 }
 
-// Icons
-.icon {
-    > svg {
-        display: inline-block;
-        width: 0.75em;
-        height: 0.75em;
-        vertical-align: middle;
-        path {
-            fill: $text-color;
-        }
-    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+    margin-bottom: $spacing-unit * 0.7;
 }
 
-.footnotes ol li {
-    list-style-type:decimal;
+th, td {
+    border: 1px solid var(--border);
+    padding: 0.5em 0.8em;
+    text-align: left;
 }
+
+th {
+    background: var(--surface-2);
+    font-family: $display-font-family;
+}
+
+.icon > svg {
+    display: inline-block;
+    width: 0.75em;
+    height: 0.75em;
+    vertical-align: middle;
+    path { fill: var(--text); }
+}
+
+.footnotes ol li { list-style-type: decimal; }
 .footnotes ol {
     font-size: $vsmall-font-size;
-    color: $text-light-color;
+    color: var(--text-muted);
 }
 
-ul.listing {
-    list-style-type: none;
-    margin-left: 0;
-}
-
-ul.listing li.listing-seperator {
-    padding-top: 0.75em;
-    font-size: 1.17em;
-}
-
-ul.listing li.listing-item time {
-    color: $text-light-color;
-    text-transform: uppercase;
-    padding-right: 0.5em;
-}
-
-ul.listing li.listing-item a {
-    color: $url-color;
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
