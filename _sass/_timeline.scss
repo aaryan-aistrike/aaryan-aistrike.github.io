@@ -47,13 +47,16 @@
 }
 
 .tl-dot-live {
+    border-color: var(--term-green);
     animation: tl-pulse 2.4s ease-out infinite;
 }
 
+.tl-row:hover .tl-dot.tl-dot-live { border-color: var(--term-green); }
+
 @keyframes tl-pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.45); }
-    70%  { box-shadow: 0 0 0 12px rgba(var(--accent-rgb), 0); }
-    100% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0); }
+    0%   { box-shadow: 0 0 0 0 rgba(var(--term-green-rgb), 0.45); }
+    70%  { box-shadow: 0 0 0 12px rgba(var(--term-green-rgb), 0); }
+    100% { box-shadow: 0 0 0 0 rgba(var(--term-green-rgb), 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {

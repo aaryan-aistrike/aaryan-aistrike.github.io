@@ -23,8 +23,8 @@
     .kc, .kd, .kp, .kr { font-weight: 600; color: var(--accent-text); }
     .kt { color: var(--accent-text); font-weight: 600; }
     .m, .mf, .mh, .mi, .mo, .il { color: var(--accent-text); }
-    .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .s1 { color: #2a8f5e; }
-    .sr { color: #2a8f5e; }
+    .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .s1 { color: var(--term-green); }
+    .sr { color: var(--term-green); }
     .ss { color: var(--accent-text); }
     .na, .no, .nv, .vc, .vg, .vi { color: var(--accent-text); }
     .nb, .bp { color: var(--text-muted); }

@@ -21,6 +21,10 @@
     --scan-line: rgba(179, 107, 0, 0.5);
     --code-bg: #FFFFFF;
     --accent-rgb: 179, 107, 0;
+    --term-green: #1E9E5A;
+    --term-green-rgb: 30, 158, 90;
+    --term-green-dim: rgba(30, 158, 90, 0.12);
+    --term-green-line: rgba(30, 158, 90, 0.35);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -43,6 +47,10 @@
         --scan-line: rgba(255, 176, 32, 0.55);
         --code-bg: #0D1218;
         --accent-rgb: 255, 176, 32;
+        --term-green: #4AE08A;
+        --term-green-rgb: 74, 224, 138;
+        --term-green-dim: rgba(74, 224, 138, 0.14);
+        --term-green-line: rgba(74, 224, 138, 0.4);
     }
 }
 
@@ -65,4 +73,8 @@
     --scan-line: rgba(255, 176, 32, 0.55);
     --code-bg: #0D1218;
     --accent-rgb: 255, 176, 32;
+    --term-green: #4AE08A;
+    --term-green-rgb: 74, 224, 138;
+    --term-green-dim: rgba(74, 224, 138, 0.14);
+    --term-green-line: rgba(74, 224, 138, 0.4);
 }

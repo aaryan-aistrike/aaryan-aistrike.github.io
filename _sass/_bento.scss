@@ -133,6 +133,13 @@
         background: var(--accent-dim);
         &:hover { color: var(--accent-text); border-color: var(--accent-line); }
     }
+
+    &.term {
+        color: var(--term-green);
+        border-color: var(--term-green-line);
+        background: var(--term-green-dim);
+        &:hover { color: var(--term-green); border-color: var(--term-green-line); }
+    }
 }
 
 .contact-row {
