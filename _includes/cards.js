@@ -56,6 +56,45 @@
       if (e.key === 'ArrowLeft') { goTo(activeIndex() - 1); e.preventDefault(); }
     });
 
+    // let mouse-wheel / trackpad scroll the deck horizontally, like any normal scroll area
+    deck.addEventListener('wheel', function (e) {
+      var horizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+      var delta = horizontal ? e.deltaX : e.deltaY;
+      var atStart = deck.scrollLeft <= 0;
+      var atEnd = deck.scrollLeft >= deck.scrollWidth - deck.clientWidth - 1;
+      // only hijack the wheel when the deck can actually move further that way,
+      // so the page can still scroll normally once you reach either end
+      if ((delta < 0 && atStart) || (delta > 0 && atEnd)) return;
+      deck.scrollLeft += delta;
+      e.preventDefault();
+    }, { passive: false });
+
+    // click-and-drag scrolling on desktop
+    (function () {
+      var isDown = false, startX = 0, startScroll = 0, moved = false;
+      deck.addEventListener('mousedown', function (e) {
+        isDown = true; moved = false;
+        startX = e.pageX;
+        startScroll = deck.scrollLeft;
+        deck.classList.add('is-dragging');
+      });
+      window.addEventListener('mousemove', function (e) {
+        if (!isDown) return;
+        var dx = e.pageX - startX;
+        if (Math.abs(dx) > 4) moved = true;
+        deck.scrollLeft = startScroll - dx;
+      });
+      window.addEventListener('mouseup', function () {
+        if (!isDown) return;
+        isDown = false;
+        deck.classList.remove('is-dragging');
+      });
+      // suppress the click-through on card links right after a drag
+      deck.addEventListener('click', function (e) {
+        if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+      }, true);
+    })();
+
     render();
 
     // --- physics: each card springs in from a random direction on load ---
