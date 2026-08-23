@@ -94,8 +94,18 @@
     function springTo(el, from, to, onDone) {
       var pos = { x: from.x, y: from.y, rot: from.rot, opacity: from.opacity };
       var vel = { x: 0, y: 0, rot: 0, opacity: 0 };
-      var stiffness = 130, damping = 17, mass = 1, dt = 1 / 60;
+      // near-critical damping (critical for stiffness 130 is ~22.8) so it settles
+      // crisply with just a light springy overshoot, not a long decaying oscillation
+      var stiffness = 130, damping = 21, mass = 1, dt = 1 / 60;
       var keys = ['x', 'y', 'rot', 'opacity'];
+      var startedAt = performance.now();
+      var maxDurationMs = 1400; // hard safety net: force-finish rather than ever get stuck
+
+      function finish() {
+        el.style.transform = 'translate(0px,0px) rotate(0deg)';
+        el.style.opacity = '1';
+        if (onDone) onDone();
+      }
 
       function step() {
         var settled = true;
@@ -104,11 +114,13 @@
           var accel = (stiffness * delta - damping * vel[k]) / mass;
           vel[k] += accel * dt;
           pos[k] += vel[k] * dt;
-          if (Math.abs(delta) > 0.01 || Math.abs(vel[k]) > 0.01) settled = false;
+          // looser threshold: still visually imperceptible, converges far faster
+          if (Math.abs(delta) > 0.4 || Math.abs(vel[k]) > 0.4) settled = false;
         });
         el.style.transform = 'translate(' + pos.x.toFixed(2) + 'px,' + pos.y.toFixed(2) + 'px) rotate(' + pos.rot.toFixed(2) + 'deg)';
         el.style.opacity = Math.max(0, Math.min(1, pos.opacity)).toFixed(3);
-        if (settled) { if (onDone) onDone(); }
+
+        if (settled || performance.now() - startedAt > maxDurationMs) finish();
         else requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
