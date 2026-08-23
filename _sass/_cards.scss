@@ -38,7 +38,7 @@
     box-shadow: var(--shadow);
     opacity: 0.45;
     transform: scale(0.94);
-    transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.2s ease;
+    transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease;
 
     &.is-active {
         opacity: 1;
