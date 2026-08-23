@@ -68,6 +68,7 @@
       var greenRaw = getColor('--term-green');
       var greenRgb = hexToRgb(greenRaw);
       var greenSolid = 'rgb(' + greenRgb.r + ',' + greenRgb.g + ',' + greenRgb.b + ')';
+      var hotSolid = 'rgb(255, 76, 40)'; // hot orange-red for spike tips and ping rings
 
       // faint horizontal graticule
       ctx.strokeStyle = gridColor;
@@ -114,21 +115,25 @@
         ctx.moveTo(x, baseline);
         ctx.lineTo(x, baseline - spikeH);
         ctx.stroke();
+        ctx.restore();
 
-        // apex dot
+        // apex dot - hot orange-red tip
+        ctx.save();
+        ctx.shadowColor = hotSolid;
+        ctx.shadowBlur = glow;
         ctx.beginPath();
         ctx.arc(x, baseline - spikeH, (1.6 + 1.4 * env) * dpr, 0, Math.PI * 2);
-        ctx.fillStyle = accentSolid;
+        ctx.fillStyle = hotSolid;
         ctx.fill();
         ctx.restore();
 
-        // expanding "ping" ring right at the fire moment
+        // expanding "ping" ring right at the fire moment - same hot orange-red
         if (phase < 0.35) {
           var ringT = phase / 0.35;
           var ringR = (4 + ringT * 26) * dpr;
           ctx.save();
           ctx.globalAlpha = (1 - ringT) * 0.5;
-          ctx.strokeStyle = accentSolid;
+          ctx.strokeStyle = hotSolid;
           ctx.lineWidth = 1.2 * dpr;
           ctx.beginPath();
           ctx.arc(x, baseline - spikeH, ringR, 0, Math.PI * 2);
