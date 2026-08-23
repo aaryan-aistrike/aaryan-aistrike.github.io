@@ -27,27 +27,21 @@
     }
 }
 
-.bento {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 16px;
-}
-
-.tile {
+.research-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 26px;
+    padding: 28px 30px;
     box-shadow: var(--shadow);
-    position: relative;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.2s ease;
 
-    &:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+    &:hover { border-color: var(--border-strong); }
 }
 
-.tile-detections { grid-column: span 4; grid-row: span 2; }
-.tile-frameworks { grid-column: span 2; grid-row: span 2; }
-.tile-contact { grid-column: span 6; }
+.plain-row {
+    padding: 32px 2px;
+    border-top: 1px solid var(--border);
+}
 
 .tile-label {
     font-family: $mono-font-family;
@@ -119,27 +113,6 @@
     transition: transform 0.15s ease, color 0.15s ease;
 }
 
-.role-name { font-family: $display-font-family; font-size: 21px; font-weight: 700; margin-top: 2px; }
-.role-org { color: var(--text-muted); font-size: 14.5px; margin-top: 4px; }
-
-.role-meta {
-    margin-top: 22px;
-    padding-top: 18px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.role-meta-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-
-    span:first-child { color: var(--text-faint); font-family: $mono-font-family; font-size: 11.5px; }
-    span:last-child { color: var(--text-muted); font-weight: 500; }
-}
-
 .chip-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .chip {
@@ -162,7 +135,7 @@
     }
 }
 
-.contact-inner {
+.contact-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -206,10 +179,8 @@
     &.in-view { opacity: 1; transform: translateY(0); }
 }
 
-.bento .reveal:nth-child(2) { transition-delay: 0.06s; }
-.bento .reveal:nth-child(3) { transition-delay: 0.12s; }
-.bento .reveal:nth-child(4) { transition-delay: 0.18s; }
-.bento .reveal:nth-child(5) { transition-delay: 0.24s; }
+.section .reveal:nth-of-type(2) { transition-delay: 0.08s; }
+.section .reveal:nth-of-type(3) { transition-delay: 0.16s; }
 
 @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
@@ -217,7 +188,7 @@
 
 @include media-query($mobile) {
     .section { padding: 64px 20px; }
-    .bento { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .tile-detections, .tile-frameworks, .tile-contact { grid-column: span 2; grid-row: auto; }
-    .contact-inner { flex-direction: column; align-items: flex-start; }
+    .research-card { padding: 22px 20px; }
+    .plain-row { padding: 26px 0; }
+    .contact-row { flex-direction: column; align-items: flex-start; }
 }
