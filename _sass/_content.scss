@@ -85,6 +85,21 @@
 // sticky-stack: each section pins in place while the next one slides up to
 // cover it, so only one section is ever fully visible at a time - no clicking,
 // no shortened content, just native scroll (position: sticky, not JS scroll-jacking)
+.stack-item-wrap {
+    // non-sticky - its extra height beyond one viewport is the scroll runway
+    // that lets the pinned child below actually hold in place for a beat
+    // before the next section's wrap starts covering it
+    min-height: 165vh;
+
+    // the last section has nothing after it to cover it, so it doesn't need
+    // the extra scroll runway - just enough to fill the viewport once pinned
+    &:last-child { min-height: calc(100vh - 60px); }
+
+    @for $i from 1 through 8 {
+        &:nth-child(#{$i}) { position: relative; z-index: $i; }
+    }
+}
+
 .stack-item {
     position: sticky;
     top: 60px; // sits just below the sticky nav
@@ -95,13 +110,20 @@
     background: var(--bg);
     border-top: 1px solid var(--border);
     padding: 48px 0 80px;
-
-    @for $i from 1 through 8 {
-        &:nth-child(#{$i}) { z-index: $i; }
-    }
+    // break out of .page-content's narrow reading column to cover full width
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
 }
 
-.stack-item:first-child {
+.stack-inner {
+    max-width: $content-width;
+    margin: 0 auto;
+    padding: 0 32px;
+    width: 100%;
+}
+
+.stack-item-wrap:first-child .stack-item {
     border-top: none;
 }
 
