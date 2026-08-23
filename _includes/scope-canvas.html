@@ -34,11 +34,18 @@
     }
 
     // each beacon fires on its own period, with a fast attack / slow decay envelope
+    var GOLDEN = 0.6180339887498949; // golden ratio conjugate (1/phi)
     var beacons = [];
     for (var i = 0; i < 5; i++) {
+      // golden-ratio low-discrepancy placement: non-uniform but well-spread, not evenly spaced
+      var frac = ((i + 1) * GOLDEN) % 1;
+      var pos = 0.08 + frac * 0.84;
+      // each beacon's rhythm scaled by a power of phi, so intervals compound
+      // the golden ratio rather than incrementing linearly
+      var period = 130 * Math.pow(1 / GOLDEN, i * 0.5);
       beacons.push({
-        pos: 0.1 + i * (0.8 / 4) + (Math.random() * 0.02 - 0.01),
-        period: 150 + i * 23 + Math.random() * 20,
+        pos: pos + (Math.random() * 0.015 - 0.0075),
+        period: period + Math.random() * 15,
         offset: Math.random() * 300,
         packet: null
       });
@@ -58,6 +65,9 @@
       var accentTextRaw = getColor('--accent-text');
       var rgb = hexToRgb(accentTextRaw || accentRaw);
       var accentSolid = 'rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')';
+      var greenRaw = getColor('--term-green');
+      var greenRgb = hexToRgb(greenRaw);
+      var greenSolid = 'rgb(' + greenRgb.r + ',' + greenRgb.g + ',' + greenRgb.b + ')';
 
       // faint horizontal graticule
       ctx.strokeStyle = gridColor;
@@ -140,9 +150,9 @@
             var packetAlpha = Math.sin(Math.PI * b.packet.progress);
             ctx.save();
             ctx.globalAlpha = packetAlpha;
-            ctx.shadowColor = accentSolid;
+            ctx.shadowColor = greenSolid;
             ctx.shadowBlur = 8;
-            ctx.fillStyle = accentSolid;
+            ctx.fillStyle = greenSolid;
             ctx.beginPath();
             ctx.arc(px, py, 1.8 * dpr, 0, Math.PI * 2);
             ctx.fill();
