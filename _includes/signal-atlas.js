@@ -129,8 +129,14 @@
       var visible = nodes.filter(function (n) { return isVisible(n.vec); });
       if (visible.length < 2) return;
       var na = visible[Math.floor(Math.random() * visible.length)];
-      var nb = visible[Math.floor(Math.random() * visible.length)];
-      if (na === nb) return;
+      var nb, attempts = 0;
+      // avoid picking two nodes from the same landmass - "North America ->
+      // North America" reads as a bug, not a global activity feed
+      do {
+        nb = visible[Math.floor(Math.random() * visible.length)];
+        attempts++;
+      } while ((nb === na || nb.region === na.region) && attempts < 8);
+      if (nb === na || nb.region === na.region) return;
       arcs.push({ a: na.vec, b: nb.vec, t: 0, speed: 0.006 + Math.random() * 0.006, life: 1 });
       eventCount++;
       if (evCountEl) evCountEl.textContent = eventCount;
