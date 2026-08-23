@@ -1,0 +1,36 @@
+---
+layout: default
+title: "Research"
+permalink: /detections/
+---
+<h1>Research</h1>
+<p class="research-intro">Detection write-ups and threat-actor profiles, grounded in public reporting and my own detection engineering work. Grows regularly.</p>
+
+<h2>Detections</h2>
+<div class="research-grid">
+{% assign sorted_detections = site.detections | sort: 'title' %}
+{% for d in sorted_detections %}
+  {% assign parts = d.title | split: " (" %}
+  {% assign clean_title = parts[0] %}
+  {% assign tag = parts[1] | remove: ")" %}
+  <a href="{{ d.url | prepend: site.baseurl }}" class="research-tile reveal">
+    <span class="tag">{% if tag %}{{ tag }}{% else %}Detection{% endif %}</span>
+    <span class="research-tile-title">{{ clean_title }}</span>
+    <span class="research-tile-arrow">&rarr;</span>
+  </a>
+{% endfor %}
+</div>
+
+<h2>Threat Actor Profiles</h2>
+<div class="research-grid">
+{% assign sorted_actors = site.actors | sort: 'title' %}
+{% for a in sorted_actors %}
+  <a href="{{ a.url | prepend: site.baseurl }}" class="research-tile reveal">
+    <span class="tag">Actor Profile</span>
+    <span class="research-tile-title">{{ a.title }}</span>
+    <span class="research-tile-arrow">&rarr;</span>
+  </a>
+{% endfor %}
+</div>
+
+<p class="research-footnote">&#9997;&#65039; This page keeps growing as I publish more research and detection case studies.</p>

@@ -41,28 +41,6 @@
     margin-bottom: 0.4em;
 }
 
-.page-content > ul:first-child,
-.page-content > ol:first-child {
-    list-style: none;
-    padding-left: 0;
-
-    li {
-        padding: 12px 0;
-        border-top: 1px solid var(--border);
-
-        &:first-child { border-top: none; padding-top: 0; }
-    }
-
-    a {
-        color: var(--text);
-        font-weight: 600;
-        font-family: $display-font-family;
-        font-size: 16px;
-
-        &:hover { color: var(--accent-text); text-decoration: none; }
-    }
-}
-
 .page-content pre.highlight,
 .page-content div.highlight,
 .page-content figure.highlight {
@@ -102,7 +80,66 @@
     &:last-child { margin-bottom: 0; }
 }
 
+.research-intro {
+    margin-top: -0.3em;
+}
+
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+.research-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    text-decoration: none;
+    position: relative;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        text-decoration: none;
+        border-color: var(--accent-line);
+        transform: translateY(-2px);
+
+        .research-tile-title { color: var(--accent-text); }
+        .research-tile-arrow { transform: translateX(3px); color: var(--accent-text); }
+    }
+}
+
+.research-tile-title {
+    color: var(--text);
+    font-family: $display-font-family;
+    font-weight: 600;
+    font-size: 15.5px;
+    line-height: 1.4;
+    transition: color 0.15s ease;
+}
+
+.research-tile-arrow {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: var(--text-faint);
+    font-size: 16px;
+    transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.research-footnote {
+    font-size: 13.5px;
+    color: var(--text-faint);
+    margin-top: 32px;
+}
+
 @include media-query($mobile) {
     .page-content { padding: 40px 20px 64px; }
     .intro-card { padding: 22px 20px; }
+    .research-grid { grid-template-columns: 1fr; }
 }
