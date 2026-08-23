@@ -16,6 +16,10 @@ Key behavioral indicators:
 - PowerShell spawned as a child of Office applications, browsers, or scripting hosts (wscript/cscript/mshta) rather than a terminal
 - Unusually long command-line length, often a symptom of layered obfuscation or embedded encoded payloads
 
+## Why this matters for detection
+
+Encoded and obfuscated PowerShell defeats naive command-line keyword matching, which is still a common baseline for a lot of tooling - so relying on plaintext string detection alone misses a large share of real-world tradecraft. Correlating the encoding flag with execution context (parent process, hidden window, download-cradle strings) restores signal without needing to decode every single invocation in real time.
+
 ---
 
 ## Detection Rule
@@ -79,3 +83,10 @@ falsepositives:
   - Security tooling itself invoking PowerShell for legitimate remediation actions
 level: high
 ```
+
+## Prevention
+
+- Enable PowerShell Script Block Logging and Module Logging (Event ID 4104) to capture the actual decoded command content, not just the encoded command-line.
+- Enforce Constrained Language Mode or AppLocker/WDAC PowerShell restrictions on endpoints that don't need full scripting capability.
+- Restrict execution policy and disable script execution for standard user accounts wherever operationally feasible.
+- Treat the parent-process combinations above (Office apps, browsers, wscript/cscript spawning PowerShell) as a standing high-priority alert, independent of payload content.

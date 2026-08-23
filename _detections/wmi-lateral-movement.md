@@ -16,6 +16,10 @@ Key behavioral indicators:
 - Use of `wmic.exe` or `Invoke-WmiMethod`/`Invoke-CimMethod` from a workstation targeting multiple hosts in a short window (indicative of scripted lateral movement / worming behavior)
 - WMI event subscriptions (`__EventFilter`, `__EventConsumer`) created for persistence rather than one-off execution
 
+## Why this matters for detection
+
+WMI-based lateral movement uses no attacker-supplied binary, so file-hash and static-signature detection has nothing to catch. The process-genealogy pattern - `wmiprvse.exe` as the parent of a shell - and cross-host fan-out from a single source are the durable signals that survive tooling changes, unlike an IOC tied to one specific payload.
+
 ---
 
 ## Detection Rule
@@ -62,3 +66,10 @@ falsepositives:
   - SCCM/MECM software deployment, which can legitimately spawn shells via WMI
 level: high
 ```
+
+## Prevention
+
+- Restrict remote WMI access to a limited set of admin workstations via host-based firewall rules, blocking inbound DCOM/WMI from general user subnets.
+- Enable WMI-Activity operational logging alongside Sysmon process-creation logging with parent-process tracking.
+- Apply least privilege so standard user accounts can't remotely invoke WMI process creation.
+- Monitor WMI event-subscription persistence (`__EventFilter`/`__EventConsumer`) as its own high-priority alert, separate from one-off execution detections.

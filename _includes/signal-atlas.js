@@ -32,10 +32,19 @@
 
     if ('ResizeObserver' in window) {
       // fires only on genuine element box-size changes, not on mobile
-      // address-bar show/hide or other viewport-only quirks
+      // address-bar show/hide or other viewport-only quirks - but a real
+      // layout transition (e.g. orientation change, or the browser chrome
+      // animating in/out) can still fire several times in quick succession
+      // as it settles. Debounce so only the FINAL size gets applied,
+      // instead of every intermediate frame - applying each one in turn is
+      // what produces the "expands then collapses" flicker on mobile.
+      var resizeDebounce;
       var ro = new ResizeObserver(function (entries) {
         var box = entries[0].contentRect;
-        applySize(box.width, box.height);
+        clearTimeout(resizeDebounce);
+        resizeDebounce = setTimeout(function () {
+          applySize(box.width, box.height);
+        }, 120);
       });
       ro.observe(canvas);
     } else {

@@ -3,25 +3,28 @@ title: "ERMAC V3.0 Banking Trojan – C2 Backend & Panel (High-Confidence)"
 layout: default
 ---
 
-## Overview  
+## Overview
 
-This detection focuses on identifying **ERMAC V3.0 C2/panel/builder traffic** based on the leaked source code analysis.  
-Unlike broad signatures, the rule emphasizes **multi-indicator correlations in a single event**, reducing false positives and providing **high-confidence coverage** for SOCs and IR teams.  
+This detection focuses on identifying **ERMAC V3.0 C2/panel/builder traffic** based on the leaked source code analysis. Unlike broad signatures, the rule emphasizes **multi-indicator correlations in a single event**, reducing false positives and providing **high-confidence coverage** for SOCs and IR teams.
 
-ERMAC’s backend follows a fairly predictable structure:  
+ERMAC's backend follows a fairly predictable structure:
 
-- `/api/v1/…` routes for bot management, logs, and account operations  
-- Auth artifacts (`ermac_session`, hardcoded JWTs, Bearer tokens)  
-- Exfil endpoints like `gate.php`, `/upload`, `/exfil`  
-- Injects directory references and Android callback beacons  
-- Unique UI titles for *panel*, *builder*, and *registration* pages  
-- Default operator creds (root / changemeplease) baked into the login flow  
+- `/api/v1/…` routes for bot management, logs, and account operations
+- Auth artifacts (`ermac_session`, hardcoded JWTs, Bearer tokens)
+- Exfil endpoints like `gate.php`, `/upload`, `/exfil`
+- Injects directory references and Android callback beacons
+- Unique UI titles for *panel*, *builder*, and *registration* pages
+- Default operator creds (root / changemeplease) baked into the login flow
 
-This rule integrates those elements into a single layered detection approach.  
+This rule integrates those elements into a single layered detection approach.
+
+## Why this matters for detection
+
+ERMAC's backend follows a predictable, fingerprintable API and URL structure derived directly from the leaked source, so multi-indicator correlation (title strings + auth artifacts + exfil paths) gives genuinely high-confidence coverage without leaning on a single brittle IOC like a destination IP, which can be rotated or sinkholed at any time.
 
 ---
 
-## Detection Rule  
+## Detection Rule
 
 ```yaml
 title: ERMAC V3.0 Banking Trojan – C2 Backend & Panel (High-Confidence)
@@ -33,7 +36,7 @@ description: >-
   confidence.
 references:
   - https://hunt.io/blog/ermac-v3-banking-trojan-source-code-leak
-author: Aryan, detections.ai
+author: Aryan
 date: 2025-08-15T00:00:00.000Z
 tags:
   - attack.command_and_control
@@ -99,4 +102,11 @@ falsepositives:
   - IPs may be reassigned or sinkholed; treat IP hits as supportive, not primary.
 level: high
 ```
+
+## Prevention
+
+- Block outbound connections to known ERMAC C2 IOCs (the destination IP list above) at the perimeter, keeping in mind these are likely to rotate over time.
+- Monitor mobile device management (MDM) telemetry for sideloaded APKs requesting excessive accessibility/SMS permissions - a common ERMAC delivery vector.
+- Educate users against installing APKs from outside official app stores.
+- Treat any hit on the hardcoded JWT indicator as high-priority - it's unique to this leaked build and carries essentially zero false-positive risk.
 

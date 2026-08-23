@@ -16,6 +16,10 @@ Key behavioral indicators:
 - Outbound connections to newly registered or freshly resolved domains, or to IPs with no corresponding DNS resolution (raw IP C2)
 - Uncommon destination ports (4444, 8080, 8443, 50050) combined with process/user context that has no legitimate reason to use them
 
+## Why this matters for detection
+
+Because inbound connections are commonly blocked at the perimeter, virtually every C2 framework relies on outbound beaconing instead - which means network-layer behavioral signals like periodicity and LOLBin-initiated connections generalize across tooling and campaigns in a way payload-specific signatures never do, making them a far more durable detection investment.
+
 ---
 
 ## Detection Rule
@@ -69,3 +73,10 @@ falsepositives:
   - Legacy applications using certutil for certificate operations rather than payload retrieval
 level: high
 ```
+
+## Prevention
+
+- Restrict outbound network access from endpoints to an allow-list of required destinations/ports where feasible (egress filtering).
+- Deploy TLS inspection or JA3/JA3S fingerprinting at the perimeter to flag known C2 client fingerprints.
+- Alert on LOLBins (`cmd`, `powershell`, `rundll32`, `certutil`) making direct outbound connections, independent of destination.
+- Baseline expected beaconing patterns per host/service so a genuinely new periodic connection stands out against normal traffic.

@@ -16,6 +16,10 @@ Key behavioral indicators:
 - TGS requests for service accounts the requesting user has never authenticated to before
 - Requests originating from non-standard hosts (workstations rather than the systems that normally host the service)
 
+## Why this matters for detection
+
+Kerberoasting requires no elevated privilege and rides on completely normal Kerberos protocol traffic, which is exactly why it's attractive to attackers as a low-noise credential access path. A single ticket request is meaningless in isolation - the signal only emerges from volume and encryption-type correlation, which is also why this detection works purely from domain controller security logs, without needing endpoint visibility on every workstation.
+
 ---
 
 ## Detection Rule
@@ -56,3 +60,10 @@ falsepositives:
   - Vulnerability scanners performing Kerberos configuration checks
 level: high
 ```
+
+## Prevention
+
+- Enforce AES-only Kerberos encryption for service accounts (disable RC4 support) wherever the domain functional level allows it.
+- Use Group Managed Service Accounts (gMSA) with automatically rotated, long random passwords instead of static SPN account passwords that can be cracked offline.
+- Monitor and alert on TGS request volume per account, not just the presence of RC4 - a single RC4 ticket is common in mixed environments and isn't inherently malicious.
+- Regularly audit SPN registrations and remove stale or unused service accounts, which shrink the pool of crackable targets.
