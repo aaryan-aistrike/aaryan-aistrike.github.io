@@ -65,6 +65,9 @@ collections:
   detections:
     output: true
     permalink: /detections/:name/
+  actors:
+    output: true
+    permalink: /actors/:name/
 
 
 # theme: jekyll-theme-time-machine
