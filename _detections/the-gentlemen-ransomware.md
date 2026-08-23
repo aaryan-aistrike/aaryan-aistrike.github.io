@@ -65,3 +65,5 @@ level: high
 - Apply the same detection and hardening standard to Linux, NAS, and ESXi hosts as to Windows endpoints - this group's cross-platform lockers specifically target the infrastructure layer that's often left with the weakest telemetry.
 - Alert on AnyDesk/PsExec execution as a *sequence* following external authentication, not just on the tool's presence - both are legitimate in isolation.
 - Maintain offline, immutable backups for hypervisor and NAS configuration, not just VM/file data - this group's technical profile specifically threatens that layer.
+
+*See also: [The Gentlemen - Fast-Scaling RaaS Affiliate Tradecraft](/actors/the-gentlemen/) for the actor's broader behavioral pattern.*

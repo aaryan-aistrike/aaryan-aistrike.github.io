@@ -63,3 +63,5 @@ level: high
 - Treat ERP and other "back office" platforms as first-class internet-facing attack surface: same patch SLAs, same exposure scanning, same EDR coverage as any public web app.
 - Where a zero-day precedes vendor disclosure, virtual-patch at the network layer (WAF rules, restricting access to known admin IP ranges) rather than waiting on an official fix.
 - Monitor for anomalous outbound data volume from application servers - large, unscheduled egress from a system that doesn't normally originate bulk transfers is a durable signal independent of the specific exploit used to get there.
+
+*See also: [UNC6240 / ShinyHunters - Zero-Day-Enabled Mass Extortion](/actors/unc6240-shinyhunters/) for the actor's broader behavioral pattern.*

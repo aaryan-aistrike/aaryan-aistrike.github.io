@@ -72,3 +72,5 @@ level: high
 - Run `npm install --ignore-scripts` in CI and only allow lifecycle scripts to execute in an isolated, network-restricted build step where their behavior can be observed.
 - Revoke publish access immediately when any maintainer account shows signs of compromise - this specific incident was enabled by access that was never revoked after a prior account takeover.
 - Monitor for outbound network connections and browser-credential-store file access originating from `node`/`npm` process trees during install, not just at runtime.
+
+*See also: [Sapphire Sleet - Supply Chain & Credential Theft Tradecraft](/actors/sapphire-sleet/) for the actor's broader behavioral pattern.*
