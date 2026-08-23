@@ -1,5 +1,5 @@
 ---
-title: "Kerberoasting — Anomalous Service Ticket Requests (High-Confidence)"
+title: "Kerberoasting - Anomalous Service Ticket Requests (High-Confidence)"
 layout: default
 ---
 
@@ -12,7 +12,7 @@ This detection focuses on the **volume and encryption-type signature** of TGS re
 Key behavioral indicators:
 
 - A single source account requesting TGS tickets for an unusually large number of distinct SPNs in a short window
-- Preference for weaker encryption (RC4, etype 0x17) over AES when both are supported by the target account — a common sign of hash-cracking tooling (e.g. Rubeus, Impacket `GetUserSPNs.py`)
+- Preference for weaker encryption (RC4, etype 0x17) over AES when both are supported by the target account - a common sign of hash-cracking tooling (e.g. Rubeus, Impacket `GetUserSPNs.py`)
 - TGS requests for service accounts the requesting user has never authenticated to before
 - Requests originating from non-standard hosts (workstations rather than the systems that normally host the service)
 

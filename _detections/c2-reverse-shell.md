@@ -1,18 +1,18 @@
 ---
-title: "C2 / Reverse Shell Activity — Network Beaconing (High-Confidence)"
+title: "C2 / Reverse Shell Activity - Network Beaconing (High-Confidence)"
 layout: default
 ---
 
 ## Overview
 
-Reverse shells and C2 frameworks (Cobalt Strike, Sliver, Metasploit, custom implants) rely on the compromised host initiating **outbound** connections to attacker infrastructure, since inbound connections are far more likely to be blocked by perimeter controls. This makes network-layer behavioral analysis — beaconing interval regularity, JA3/JA3S fingerprints, and destination reputation — more durable than payload-specific signatures, which change per campaign.
+Reverse shells and C2 frameworks (Cobalt Strike, Sliver, Metasploit, custom implants) rely on the compromised host initiating **outbound** connections to attacker infrastructure, since inbound connections are far more likely to be blocked by perimeter controls. This makes network-layer behavioral analysis - beaconing interval regularity, JA3/JA3S fingerprints, and destination reputation - more durable than payload-specific signatures, which change per campaign.
 
 This rule combines **process-level indicators** (an unexpected process making outbound network connections) with **network-level indicators** (beacon-like periodicity) to raise confidence, since either alone produces excessive noise in most environments.
 
 Key behavioral indicators:
 
 - Living-off-the-land binaries (`cmd.exe`, `powershell.exe`, `rundll32.exe`, `certutil.exe`) making direct outbound TCP connections rather than a browser or expected network service
-- Long-lived, low-and-slow beacon connections with consistent time intervals between packets (classic C2 heartbeat pattern) — jitter percentage is often visible in Cobalt Strike traffic if unencrypted metadata is inspectable
+- Long-lived, low-and-slow beacon connections with consistent time intervals between packets (classic C2 heartbeat pattern) - jitter percentage is often visible in Cobalt Strike traffic if unencrypted metadata is inspectable
 - Outbound connections to newly registered or freshly resolved domains, or to IPs with no corresponding DNS resolution (raw IP C2)
 - Uncommon destination ports (4444, 8080, 8443, 50050) combined with process/user context that has no legitimate reason to use them
 

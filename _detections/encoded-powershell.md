@@ -5,7 +5,7 @@ layout: default
 
 ## Overview
 
-Base64-encoded (`-EncodedCommand` / `-enc`) and otherwise obfuscated PowerShell invocation is a long-standing technique ([MITRE ATT&CK T1059.001](https://attack.mitre.org/techniques/T1059/001/)) used to evade command-line signature matching, string-based AV detection, and casual analyst review. It shows up across the kill chain — initial access droppers, staged download-and-execute loaders, and post-exploitation tooling (Empire, Cobalt Strike, Mimikatz wrappers) all commonly use it.
+Base64-encoded (`-EncodedCommand` / `-enc`) and otherwise obfuscated PowerShell invocation is a long-standing technique ([MITRE ATT&CK T1059.001](https://attack.mitre.org/techniques/T1059/001/)) used to evade command-line signature matching, string-based AV detection, and casual analyst review. It shows up across the kill chain - initial access droppers, staged download-and-execute loaders, and post-exploitation tooling (Empire, Cobalt Strike, Mimikatz wrappers) all commonly use it.
 
 The rule below correlates **encoding/obfuscation flags with additional suspicious execution characteristics**, since encoded PowerShell alone is used legitimately (e.g. by some configuration management tools) and is too noisy as a standalone signature.
 

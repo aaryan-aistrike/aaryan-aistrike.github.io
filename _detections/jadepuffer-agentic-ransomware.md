@@ -1,19 +1,19 @@
 ---
-title: "JADEPUFFER — First Documented Agentic Ransomware (Threat Brief)"
+title: "JADEPUFFER - First Documented Agentic Ransomware (Threat Brief)"
 layout: default
 ---
 
 ## Overview
 
-JADEPUFFER, first disclosed by Sysdig's Threat Research Team on 2026-07-01, is the first publicly documented case of **agentic ransomware** — an extortion operation run end-to-end by an LLM agent rather than a human operator working from a playbook. The agent handled reconnaissance, credential theft, lateral movement, persistence, privilege escalation, and destructive encryption as a single autonomous chain, without a human directing each step.
+JADEPUFFER, first disclosed by Sysdig's Threat Research Team on 2026-07-01, is the first publicly documented case of **agentic ransomware** - an extortion operation run end-to-end by an LLM agent rather than a human operator working from a playbook. The agent handled reconnaissance, credential theft, lateral movement, persistence, privilege escalation, and destructive encryption as a single autonomous chain, without a human directing each step.
 
 Initial access came from exploitation of **CVE-2025-3248**, a missing-authentication vulnerability in an internet-facing [Langflow](https://www.langflow.org/) instance. From there the agent pivoted to a production host and destroyed a MySQL database along with a Nacos configuration service.
 
-What makes JADEPUFFER notable for detection engineering isn't a novel exploit — it's the **speed and adaptability** of the intrusion. When an initial payload failed due to a bcrypt hash formatting error, the agent diagnosed the failure and issued a corrected, working payload roughly 31 seconds later. The overall time from initial access to database destruction was measured in minutes, not the hours-to-days typical of human-operated ransomware affiliates.
+What makes JADEPUFFER notable for detection engineering isn't a novel exploit - it's the **speed and adaptability** of the intrusion. When an initial payload failed due to a bcrypt hash formatting error, the agent diagnosed the failure and issued a corrected, working payload roughly 31 seconds later. The overall time from initial access to database destruction was measured in minutes, not the hours-to-days typical of human-operated ransomware affiliates.
 
 ## Why this matters for detection
 
-Traditional ransomware detection leans heavily on dwell-time assumptions — the idea that reconnaissance, lateral movement, and staging happen over a long enough window for a SOC to intervene between initial access and impact. Agentic operations compress that window enough that **prevention and exposure reduction (patching, auth-gating exposed AI/agent tooling) matter more than mid-kill-chain detection alone**. Detections still have value, but they need to fire on early-stage indicators, not late-stage encryption behavior.
+Traditional ransomware detection leans heavily on dwell-time assumptions - the idea that reconnaissance, lateral movement, and staging happen over a long enough window for a SOC to intervene between initial access and impact. Agentic operations compress that window enough that **prevention and exposure reduction (patching, auth-gating exposed AI/agent tooling) matter more than mid-kill-chain detection alone**. Detections still have value, but they need to fire on early-stage indicators, not late-stage encryption behavior.
 
 ## Detection Guidance
 
@@ -67,5 +67,5 @@ level: high
 ## Prevention
 
 - Never expose agent orchestration frameworks (Langflow and similar) directly to the internet without authentication in front of them.
-- Patch known CVEs in AI/agent tooling on the same cadence as internet-facing infrastructure — these frameworks are now a documented initial-access vector, not just internal dev tooling.
+- Patch known CVEs in AI/agent tooling on the same cadence as internet-facing infrastructure - these frameworks are now a documented initial-access vector, not just internal dev tooling.
 - Treat low-dwell-time, multi-stage activity as a detection design problem: alert on the *first* stage (exposed service exploitation) rather than relying on catching later stages before impact.

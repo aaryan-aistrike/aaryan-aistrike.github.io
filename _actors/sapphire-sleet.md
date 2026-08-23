@@ -1,5 +1,5 @@
 ---
-title: "Sapphire Sleet — Supply Chain & Credential Theft Tradecraft"
+title: "Sapphire Sleet - Supply Chain & Credential Theft Tradecraft"
 layout: default
 ---
 
@@ -9,15 +9,15 @@ Sapphire Sleet is a Microsoft-tracked threat actor associated with the June 2026
 
 ## Behavioral pattern
 
-- **Access acquisition over exploitation.** Rather than finding a new vulnerability, the group took over a legitimate, trusted publisher account whose access had never been revoked after an earlier compromise — the path of least resistance into a high-trust distribution channel.
+- **Access acquisition over exploitation.** Rather than finding a new vulnerability, the group took over a legitimate, trusted publisher account whose access had never been revoked after an earlier compromise - the path of least resistance into a high-trust distribution channel.
 - **Indirection through dependencies.** The compromised packages themselves were left unmodified; the payload arrived through a single typosquatted dependency (`easy-day-js` mimicking `dayjs`) injected into each package's manifest. This keeps the "primary" package clean under casual review while still executing on every install.
-- **Install-time execution.** The payload ran from a `postinstall` lifecycle hook, executing automatically before a developer ever imported or ran the package — maximizing blast radius with minimal attacker effort per victim.
-- **Broad, opportunistic collection.** Once running, the payload harvested browser data across three browser families and credentials from 166 distinct cryptocurrency wallet extensions — a wide net rather than a targeted objective, consistent with monetization-driven rather than espionage-driven motives.
+- **Install-time execution.** The payload ran from a `postinstall` lifecycle hook, executing automatically before a developer ever imported or ran the package - maximizing blast radius with minimal attacker effort per victim.
+- **Broad, opportunistic collection.** Once running, the payload harvested browser data across three browser families and credentials from 166 distinct cryptocurrency wallet extensions - a wide net rather than a targeted objective, consistent with monetization-driven rather than espionage-driven motives.
 - **Speed and automation.** The entire republish campaign across 140+ packages executed in roughly 88 minutes, indicating tooling built for scale rather than manual, package-by-package operation.
 
 ## What this means for defenders
 
-Sapphire Sleet's pattern rewards organizations that treat the **dependency graph itself as untrusted input** — diffing lockfiles in code review, restricting lifecycle script execution in CI, and monitoring for unexpected network/credential-store access originating from package manager processes during install (not just at application runtime). Revoking stale publish access after any account-security event is the specific control that would have prevented this campaign's initial foothold.
+Sapphire Sleet's pattern rewards organizations that treat the **dependency graph itself as untrusted input** - diffing lockfiles in code review, restricting lifecycle script execution in CI, and monitoring for unexpected network/credential-store access originating from package manager processes during install (not just at application runtime). Revoking stale publish access after any account-security event is the specific control that would have prevented this campaign's initial foothold.
 
 *See also: [Mastra npm Supply Chain Compromise](/detections/mastra-npm-supply-chain/) for detection logic.*
 
