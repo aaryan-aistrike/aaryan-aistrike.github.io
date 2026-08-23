@@ -48,11 +48,13 @@
     });
   })();
 
-  // auto-tag content pages (Introduction, detections, actor profiles) for scroll-reveal,
-  // since their markup is raw Markdown output and can't carry a .reveal class by hand
+  // auto-tag content pages (detections, actor profiles) for scroll-reveal, since their
+  // markup is raw Markdown output and can't carry a .reveal class by hand. Pages that opt
+  // into the richer .spring-reveal system (below) handle their own reveal instead.
   (function () {
     var content = document.querySelector('.page-content');
     if (!content) return;
+    if (document.querySelector('.spring-reveal')) return;
     Array.prototype.forEach.call(content.children, function (el) {
       el.classList.add('reveal');
     });
@@ -74,6 +76,69 @@
         }
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+
+  // spring-reveal: sections fly in from a random direction as they scroll into view,
+  // driven by an actual damped mass-spring-damper simulation (see the beacon/card work
+  // elsewhere on the site for the same technique)
+  (function () {
+    var items = document.querySelectorAll('.spring-reveal');
+    if (!items.length) return;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.style.opacity = ''; el.style.transform = ''; });
+      return;
+    }
+
+    function springTo(el, from, to, onDone) {
+      var pos = { x: from.x, y: from.y, rot: from.rot, opacity: from.opacity };
+      var vel = { x: 0, y: 0, rot: 0, opacity: 0 };
+      var stiffness = 130, damping = 17, mass = 1, dt = 1 / 60;
+      var keys = ['x', 'y', 'rot', 'opacity'];
+
+      function step() {
+        var settled = true;
+        keys.forEach(function (k) {
+          var delta = to[k] - pos[k];
+          var accel = (stiffness * delta - damping * vel[k]) / mass;
+          vel[k] += accel * dt;
+          pos[k] += vel[k] * dt;
+          if (Math.abs(delta) > 0.01 || Math.abs(vel[k]) > 0.01) settled = false;
+        });
+        el.style.transform = 'translate(' + pos.x.toFixed(2) + 'px,' + pos.y.toFixed(2) + 'px) rotate(' + pos.rot.toFixed(2) + 'deg)';
+        el.style.opacity = Math.max(0, Math.min(1, pos.opacity)).toFixed(3);
+        if (settled) { if (onDone) onDone(); }
+        else requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        io.unobserve(entry.target);
+        var el = entry.target;
+        var angle = Math.random() * Math.PI * 2;
+        var distance = 90 + Math.random() * 140;
+        var fromX = Math.cos(angle) * distance;
+        var fromY = Math.sin(angle) * distance * 0.5;
+        var fromRot = (Math.random() * 10) - 5;
+
+        el.style.transition = 'none';
+        el.style.opacity = '0';
+        el.style.transform = 'translate(' + fromX + 'px,' + fromY + 'px) rotate(' + fromRot + 'deg)';
+
+        requestAnimationFrame(function () {
+          springTo(el, { x: fromX, y: fromY, rot: fromRot, opacity: 0 }, { x: 0, y: 0, rot: 0, opacity: 1 }, function () {
+            el.style.transition = '';
+            el.style.transform = '';
+            el.style.opacity = '';
+          });
+        });
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
     items.forEach(function (el) { io.observe(el); });
   })();
 </script>

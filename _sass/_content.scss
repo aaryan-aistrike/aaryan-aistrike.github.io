@@ -71,6 +71,19 @@
     box-shadow: var(--shadow);
 }
 
+.spring-reveal {
+    opacity: 0;
+    margin-bottom: 2.4em;
+
+    &:last-child { margin-bottom: 0; }
+    h1, h2 { margin-top: 0; }
+    .eyebrow { justify-content: flex-start; margin-bottom: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .spring-reveal { opacity: 1; }
+}
+
 @include media-query($mobile) {
     .page-content { padding: 40px 20px 64px; }
 }
