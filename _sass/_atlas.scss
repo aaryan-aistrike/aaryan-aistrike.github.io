@@ -4,6 +4,34 @@
     margin: -0.6em 0 28px;
 }
 
+// break out of .page-content's narrow reading column, then re-center at a
+// wider max-width - same two-layer trick used for the sticky-stack layout
+.research-breakout {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+.research-layout {
+    max-width: 74em;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: minmax(240px, 300px) 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.atlas-side {
+    position: sticky;
+    top: 76px; // just below the sticky nav
+}
+
+@include media-query($desktop) {
+    .research-layout { grid-template-columns: 1fr; }
+    .atlas-side { position: static; margin-bottom: 8px; }
+}
+
 .atlas-panel {
     position: relative;
     background: var(--bg-hero);
