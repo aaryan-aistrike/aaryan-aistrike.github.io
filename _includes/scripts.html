@@ -87,7 +87,7 @@
     if (!items.length) return;
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion || !('IntersectionObserver' in window)) {
-      items.forEach(function (el) { el.style.opacity = ''; el.style.transform = ''; });
+      items.forEach(function (el) { el.style.opacity = '1'; el.style.transform = ''; });
       return;
     }
 
@@ -133,7 +133,9 @@
           springTo(el, { x: fromX, y: fromY, rot: fromRot, opacity: 0 }, { x: 0, y: 0, rot: 0, opacity: 1 }, function () {
             el.style.transition = '';
             el.style.transform = '';
-            el.style.opacity = '';
+            // leave opacity explicitly at 1 (not '') - the base CSS rule is opacity:0,
+            // clearing back to it here would make the text vanish right after revealing
+            el.style.opacity = '1';
           });
         });
       });
