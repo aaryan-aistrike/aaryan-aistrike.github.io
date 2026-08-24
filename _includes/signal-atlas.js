@@ -150,7 +150,8 @@
       { text: 'ShinyHunters/UNC6240 - PeopleSoft RCE (Oracle, US vendor)', from: 'North America', to: 'Southeast Asia' },
       { text: 'ShinyHunters/UNC6240 - university campus breach (UK/Malaysia/China)', from: 'North America', to: 'Europe' },
       { text: 'Sapphire Sleet - npm postinstall payload (Microsoft attribution)', from: 'Asia', to: 'North America' },
-      { text: 'Sapphire Sleet - wallet-extension credential theft', from: 'Asia', to: 'Southeast Asia' }
+      { text: 'Sapphire Sleet - wallet-extension credential theft', from: 'Asia', to: 'Southeast Asia' },
+      { text: 'Storm-1175 - N-central auth bypass, StormEncryptor deploy (China-linked, Microsoft)', from: 'Asia', to: 'North America' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
