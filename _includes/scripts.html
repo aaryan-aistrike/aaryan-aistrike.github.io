@@ -79,6 +79,30 @@
     items.forEach(function (el) { io.observe(el); });
   })();
 
+  // visitor counter: 612 was the running count when this was added, so the
+  // displayed number is that offset plus real hits from here on. /hit only
+  // fires once per browser session (sessionStorage-gated) so clicking around
+  // multiple pages in one visit doesn't inflate the count; every other page
+  // in the session just re-reads the current value with /get.
+  (function () {
+    var el = document.getElementById('visitorCounter');
+    if (!el) return;
+    var OFFSET = 611; // 612 - 1, since the first /hit response is 1
+    var namespace = 'aaryan-aistrike-github-io';
+    var key = 'site-visits';
+    var alreadyHitThisSession = false;
+    try { alreadyHitThisSession = sessionStorage.getItem('visitorHit') === '1'; } catch (e) {}
+    var endpoint = 'https://abacus.jasoncameron.dev/' + (alreadyHitThisSession ? 'get' : 'hit') + '/' + namespace + '/' + key;
+
+    fetch(endpoint).then(function (res) { return res.json(); }).then(function (data) {
+      if (typeof data.value !== 'number') return;
+      el.textContent = 'Visitors: ' + (OFFSET + data.value);
+      try { sessionStorage.setItem('visitorHit', '1'); } catch (e) {}
+    }).catch(function () {
+      // leave the static fallback count in place if the counter service is unreachable
+    });
+  })();
+
   // spring-reveal: sections fly in from a random direction as they scroll into view,
   // driven by an actual damped mass-spring-damper simulation (see the beacon/card work
   // elsewhere on the site for the same technique)
