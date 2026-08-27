@@ -153,7 +153,8 @@
       { text: 'Sapphire Sleet - wallet-extension credential theft', from: 'Asia', to: 'Southeast Asia' },
       { text: 'Storm-1175 - N-central auth bypass, StormEncryptor deploy (China-linked, Microsoft)', from: 'Asia', to: 'North America' },
       { text: 'CRPx0 - OnlyFans-lure ransomware (.ru C2 infra, hit US/Turkey hardest)', from: 'Europe', to: 'North America' },
-      { text: 'Gunra - Fortinet auth-bypass RaaS (US/South Korea joint advisory)', from: 'Asia', to: 'North America' }
+      { text: 'Gunra - Fortinet auth-bypass RaaS (US/South Korea joint advisory)', from: 'Asia', to: 'North America' },
+      { text: 'CVE-2026-59310 vCenter RCE - China-nexus actor (QUIRSO), Germany hardest hit', from: 'Asia', to: 'Europe' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
