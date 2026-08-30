@@ -156,7 +156,8 @@
       { text: 'Gunra - Fortinet auth-bypass RaaS (US/South Korea joint advisory)', from: 'Asia', to: 'North America' },
       { text: 'CVE-2026-59310 vCenter RCE - China-nexus actor (QUIRSO), Germany hardest hit', from: 'Asia', to: 'Europe' },
       { text: 'Famous Chollima/Jasper Sleet - DPRK IT worker fraud, 47% of US tech-sector state activity', from: 'Asia', to: 'North America' },
-      { text: 'UNC6671 - vishing/AiTM extortion (Russia-hosted C2 infra) hit US hedge funds & PE firms', from: 'Europe', to: 'North America' }
+      { text: 'UNC6671 - vishing/AiTM extortion (Russia-hosted C2 infra) hit US hedge funds & PE firms', from: 'Europe', to: 'North America' },
+      { text: 'Storm-2945/Midnight Blizzard - CaptiveCrunch hotel Wi-Fi hijack (Russia SVR, Microsoft)', from: 'Europe', to: 'North America' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
