@@ -104,6 +104,18 @@
     border: 1px solid var(--border);
     padding: 3px 8px;
     border-radius: 5px;
+
+    &.tag-confidence {
+        color: var(--term-green);
+        background: var(--term-green-dim);
+        border-color: transparent;
+    }
+
+    &.tag-notable {
+        color: var(--accent-text);
+        background: var(--accent-dim);
+        border-color: transparent;
+    }
 }
 
 .det-arrow {

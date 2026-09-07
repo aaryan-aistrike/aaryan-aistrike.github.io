@@ -79,6 +79,34 @@
     items.forEach(function (el) { io.observe(el); });
   })();
 
+  // detections filter chips: narrows the /detections/ grid by the same tag
+  // shown on each tile. "notable" catches anything that isn't exactly
+  // "Threat Brief" or "High-Confidence" (e.g. a one-off CVE-specific tag).
+  (function () {
+    var chipRow = document.getElementById('detectionsChipRow');
+    var grid = document.getElementById('detectionsGrid');
+    var emptyMsg = document.getElementById('detectionsFilterEmpty');
+    if (!chipRow || !grid) return;
+
+    chipRow.addEventListener('click', function (e) {
+      var btn = e.target.closest('.chip');
+      if (!btn) return;
+      chipRow.querySelectorAll('.chip').forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+      btn.setAttribute('aria-pressed', 'true');
+
+      var filter = btn.getAttribute('data-filter');
+      var visible = 0;
+      grid.querySelectorAll('.research-tile').forEach(function (tile) {
+        var tag = tile.getAttribute('data-tag');
+        var match = filter === 'all' || tag === filter ||
+          (filter === 'notable' && tag !== 'Threat Brief' && tag !== 'High-Confidence');
+        tile.hidden = !match;
+        if (match) visible++;
+      });
+      if (emptyMsg) emptyMsg.classList.toggle('show', visible === 0);
+    });
+  })();
+
   // visitor counter: 612 was the running count when this was added, so the
   // displayed number is that offset plus real hits from here on. /hit only
   // fires once per browser session (sessionStorage-gated) so clicking around

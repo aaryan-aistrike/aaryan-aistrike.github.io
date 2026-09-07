@@ -22,19 +22,50 @@ permalink: /detections/
 <p class="research-intro">Detection write-ups and threat-actor profiles, grounded in public reporting and my own detection engineering work. Grows regularly.</p>
 
 <h2>Detections</h2>
-<div class="research-grid">
 {% assign sorted_detections = site.detections | sort: 'title' %}
+{% assign threat_brief_count = 0 %}
+{% assign high_conf_count = 0 %}
+{% assign notable_count = 0 %}
+{% for d in sorted_detections %}
+  {% assign parts = d.title | split: " (" %}
+  {% assign tag = parts[1] | remove: ")" %}
+  {% unless tag %}{% assign tag = "Detection" %}{% endunless %}
+  {% if tag == "Threat Brief" %}
+    {% assign threat_brief_count = threat_brief_count | plus: 1 %}
+  {% elsif tag == "High-Confidence" %}
+    {% assign high_conf_count = high_conf_count | plus: 1 %}
+  {% else %}
+    {% assign notable_count = notable_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+<div class="chip-row" id="detectionsChipRow">
+  <button class="chip" data-filter="all" aria-pressed="true">All <span class="count">{{ sorted_detections.size }}</span></button>
+  <button class="chip" data-filter="Threat Brief" aria-pressed="false">Threat Brief <span class="count">{{ threat_brief_count }}</span></button>
+  <button class="chip" data-filter="High-Confidence" aria-pressed="false">High-Confidence <span class="count">{{ high_conf_count }}</span></button>
+  {% if notable_count > 0 %}
+  <button class="chip" data-filter="notable" aria-pressed="false">Notable <span class="count">{{ notable_count }}</span></button>
+  {% endif %}
+</div>
+<div class="research-grid" id="detectionsGrid">
 {% for d in sorted_detections %}
   {% assign parts = d.title | split: " (" %}
   {% assign clean_title = parts[0] %}
   {% assign tag = parts[1] | remove: ")" %}
-  <a href="{{ d.url | prepend: site.baseurl }}" class="research-tile reveal">
-    <span class="tag">{% if tag %}{{ tag }}{% else %}Detection{% endif %}</span>
+  {% unless tag %}{% assign tag = "Detection" %}{% endunless %}
+  {% assign tag_class = "" %}
+  {% if tag == "High-Confidence" %}
+    {% assign tag_class = "tag-confidence" %}
+  {% elsif tag != "Threat Brief" %}
+    {% assign tag_class = "tag-notable" %}
+  {% endif %}
+  <a href="{{ d.url | prepend: site.baseurl }}" class="research-tile reveal" data-tag="{{ tag }}">
+    <span class="tag {{ tag_class }}">{{ tag }}</span>
     <span class="research-tile-title">{{ clean_title }}</span>
     <span class="research-tile-arrow">&rarr;</span>
   </a>
 {% endfor %}
 </div>
+<p class="filter-empty" id="detectionsFilterEmpty">No detections match this filter.</p>
 
 <h2>Threat Actor Profiles</h2>
 <div class="research-grid">
