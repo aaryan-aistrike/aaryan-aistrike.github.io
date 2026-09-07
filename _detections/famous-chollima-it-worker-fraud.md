@@ -5,7 +5,7 @@ layout: default
 
 ## Overview
 
-**Famous Chollima** (CrowdStrike) / **Jasper Sleet** (Microsoft, formerly Storm-0287) is a North Korean state-backed operation that gets DPRK-trained IT workers hired as remote developers and contractors at Western companies using stolen or fabricated identities. CrowdStrike attributes 47% of all state-backed activity targeting the tech sector between April 2025 and May 2026 to this cluster, tracking 320+ incidents (+220% year-over-year) across 100+ infiltrated companies. A five-week honeypot operation ("Ballena Azul," a fake crypto startup run by researchers Mauro Eldritch and Heiner García) publicly documented in August 2026 confirmed the operational tradecraft first-hand: onboarded operators deployed Google/Chrome Remote Desktop via unattended PowerShell with a fixed, trivial PIN, then layered it on top of AnyDesk to maintain persistent, concurrent control of the company-issued endpoint - alongside browser extensions for AI-assisted interview cheating and OTP interception.
+**Famous Chollima** (CrowdStrike) / **Jasper Sleet** (Microsoft, formerly Storm-0287) is a North Korean state-backed operation that gets DPRK-trained IT workers hired as remote developers and contractors at Western companies using stolen or fabricated identities. CrowdStrike's 2025 report tracked 320+ incidents (+220% year-over-year) across 100+ infiltrated companies; its 2026 report separately attributes 47% of all "interactive intrusions" targeting the tech sector to this cluster. A five-week honeypot operation ("Ballena Azul," a fake crypto startup run by researchers Mauro Eldritch and Heiner García) publicly documented in August 2026 confirmed the operational tradecraft first-hand: onboarded operators deployed Google/Chrome Remote Desktop via unattended PowerShell with a fixed, trivial PIN, then layered it on top of AnyDesk to maintain persistent, concurrent control of the company-issued endpoint - alongside browser extensions for AI-assisted interview cheating and OTP interception.
 
 ## Why this matters for detection
 
@@ -32,7 +32,7 @@ date: 2026-08-28T00:00:00.000Z
 tags:
   - attack.initial_access
   - attack.t1078
-  - attack.persistence
+  - attack.command_and_control
   - attack.t1219
 detection:
   selection_anydesk:

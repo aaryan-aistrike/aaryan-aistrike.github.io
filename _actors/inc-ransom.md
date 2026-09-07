@@ -5,7 +5,7 @@ layout: default
 
 ## Who they are
 
-INC Ransom (also tracked as INC Ransomware, GOLD IONIC, and Incransom) is a ransomware-as-a-service operation that emerged in mid-to-late 2023, running double-extortion attacks against organizations in North America, Europe, and Australia. It is assessed as the second-largest Russian-speaking ransomware collective by activity, behind DragonForce, though the individuals behind it remain unidentified. Its source code was sold on the RAMP underground forum for $300,000 in March 2024, and researchers widely assess the Lynx ransomware family - which surfaced shortly after - as a rebrand or fork sharing substantial code overlap with INC, though INC itself has continued to operate independently rather than disappearing after that sale.
+INC Ransom (also tracked as INC Ransomware, GOLD IONIC, and Incransom) is a ransomware-as-a-service operation that emerged in mid-to-late 2023, running double-extortion attacks against organizations in North America, Europe, and Australia. It is assessed as one of the more active Russian-speaking ransomware collectives, though the individuals behind it remain unidentified. Its source code was sold on the RAMP underground forum for $300,000 in May 2024, and researchers widely assess the Lynx ransomware family - which surfaced shortly after - as a rebrand or fork sharing substantial code overlap with INC, though INC itself has continued to operate independently rather than disappearing after that sale.
 
 In 2026 the group became the dominant actor exploiting two SonicWall SMA 1000 zero-days, driving its leak site past 885 listed victims by early August 2026, with fresh victims across the US, Australia, UAE, Colombia, and Switzerland added in just the two weeks prior.
 

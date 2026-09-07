@@ -5,7 +5,7 @@ layout: default
 
 ## Who they are
 
-Exilware is a Brazilian-nexus initial access broker (IAB) operation that has run an underground service since February 2026, selling remote access to compromised Windows hosts to other criminals through a marketplace known as the "Infected Marketplace" (also called "Banco de Infects"), with entry deposits as low as $5.80. Its primary technical engine is BraZetsu, a modular Python-based malware framework first observed in early May 2026 and attributed to Exilware with high confidence by Group-IB, based on shared codebase, infrastructure, and tradecraft overlap with a related tool tracked as AgenteV2.
+Exilware is a Brazilian-nexus initial access broker (IAB) operation that has run an underground service since February 2026, selling remote access to compromised Windows hosts to other criminals through a marketplace known as the "Infected Marketplace" (also called "Banco de Infects"), with entry deposits as low as $5.80. Its primary technical engine is BraZetsu, a modular Python-based malware framework first observed on February 9, 2026 and attributed to Exilware with high confidence by Group-IB, based on shared codebase, infrastructure, and tradecraft overlap with a related tool tracked as AgenteV2.
 
 ## Behavioral pattern
 

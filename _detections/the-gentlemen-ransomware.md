@@ -31,7 +31,9 @@ author: Aryan
 date: 2026-08-23T00:00:00.000Z
 tags:
   - attack.lateral_movement
-  - attack.t1021
+  - attack.t1021.002
+  - attack.command_and_control
+  - attack.t1219
   - attack.impact
   - attack.t1486
   - attack.t1072

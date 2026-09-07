@@ -5,7 +5,7 @@ layout: default
 
 ## Overview
 
-**Storm-1175** is a financially motivated, China-linked ransomware actor tracked by Microsoft Threat Intelligence, known for weaponizing N-day vulnerabilities in internet-facing software within days of public disclosure and moving from initial access to ransomware deployment in as little as 24 hours. Historically a Medusa RaaS affiliate, the group debuted a self-branded payload - StormEncryptor - on 2026-08-02, the same day a critical authentication-bypass flaw in N-able's N-central RMM platform (CVE-2026-18577) was publicly disclosed. CISA added the vulnerability to its Known Exploited Vulnerabilities catalog the following day, 2026-08-03.
+**Storm-1175** is a financially motivated, China-linked ransomware actor tracked by Microsoft Threat Intelligence, known for weaponizing N-day vulnerabilities in internet-facing software within days of public disclosure and moving from initial access to ransomware deployment in as little as 24 hours. Historically a Medusa RaaS affiliate, the group debuted a self-branded payload - StormEncryptor - on 2026-08-02, the same day a high-severity authentication-bypass flaw in N-able's N-central RMM platform (CVE-2026-18577, CVSS 8.2) was publicly disclosed. CISA added the vulnerability to its Known Exploited Vulnerabilities catalog the following day, 2026-08-03.
 
 StormEncryptor is a C++ payload that appends `.encrypted` to affected files and drops a `!!!README_FIRST!!!.txt` ransom note in every scanned directory. Post-compromise, the group relies on legitimate remote-management tooling (AnyDesk, SimpleHelp) for persistence, Advanced IP Scanner for network discovery, and Mimikatz for LSASS credential dumping - commodity tooling rather than custom malware for the lateral-movement phase.
 

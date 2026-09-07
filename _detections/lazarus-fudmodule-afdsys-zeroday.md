@@ -5,7 +5,7 @@ layout: default
 
 ## Overview
 
-On 2026-08-11, Microsoft patched **CVE-2026-68820** as part of that month's Patch Tuesday - a use-after-free race condition in `AFD.sys` (the Ancillary Function Driver for Winsock) that had already been under active exploitation by North Korea's **Lazarus Group** since at least early July 2026. Check Point Research, which reported the flaw to Microsoft on 2026-07-28, documented the exploitation chain as part of the group's long-running "Operation Dream Job" campaign: fake recruiters impersonating **Enveil**, a real privacy-enhancing-technology firm, targeted employees at defense, aerospace, and aviation organizations in Europe and India, delivering **SecurityPDF** - a modified PDF viewer that opens attacker-crafted documents and executes a previously undocumented backdoor named **Troy**. Troy then exploits CVE-2026-68820 to escalate from limited user access to SYSTEM and deploys **FudModule v3.1**, Lazarus' kernel-mode rootkit, to blind endpoint defenses.
+On 2026-08-11, Microsoft patched **CVE-2026-68820** as part of that month's Patch Tuesday - a use-after-free race condition in `AFD.sys` (the Ancillary Function Driver for Winsock) that had already been under active exploitation by North Korea's **Lazarus Group** since at least early July 2026. Check Point Research, which reported the flaw to Microsoft on 2026-07-28, documented the exploitation chain as part of the group's long-running "Operation Dream Job" campaign: fake recruiters impersonating **Enveil**, a real privacy-enhancing-technology firm, targeted employees at defense, aerospace, and aviation organizations in Europe, India, and Brazil, delivering **SecurityPDF** - a modified PDF viewer that opens attacker-crafted documents and executes a previously undocumented backdoor named **Troy**. Troy then delivers a separate MISTPEN loader/FudModule chain that exploits CVE-2026-68820 to escalate from limited user access to SYSTEM and deploys **FudModule v3.1**, Lazarus' kernel-mode rootkit, to blind endpoint defenses.
 
 ## Why this matters for detection
 
@@ -20,8 +20,8 @@ description: >-
   Detects Windows crash-dump suppression shortly after execution of a
   non-standard PDF viewer process, consistent with Lazarus Group's
   Operation Dream Job post-exploitation pattern (SecurityPDF -> Troy
-  backdoor -> CVE-2026-68820 AFD.sys zero-day -> FudModule v3.1 EDR
-  blinding).
+  backdoor -> MISTPEN loader -> CVE-2026-68820 AFD.sys zero-day ->
+  FudModule v3.1 EDR blinding).
 references:
   - https://research.checkpoint.com/2026/shattering-the-dream-when-a-job-offer-becomes-a-zero-day-attack/
   - https://thehackernews.com/2026/08/lazarus-exploits-windows-zero-day-to.html

@@ -11,7 +11,7 @@ ShinyHunters is a well-documented cybercrime group known for large-scale data th
 
 - **Zero-day exploitation at industrialized scale.** The group didn't use the CVE against a handful of hand-picked targets - it ran automated scanning and exploitation scripts across the internet-facing PeopleSoft footprint, compromising as many instances as the vulnerability window allowed before patching closed it.
 - **Targeting platforms assumed to be low-priority.** ERP/back-office systems like PeopleSoft are frequently deprioritized for patching and monitoring relative to standard web-facing applications, on the assumption they're too obscure to be targeted. This campaign specifically exploited that assumption gap.
-- **Data theft over encryption.** Unlike ransomware-style impact, the group's leverage was published stolen data - in the confirmed case, ~40GB covering ~500,000 student records - used for extortion rather than operational disruption.
+- **Data theft over encryption.** Unlike ransomware-style impact, the group's leverage was published stolen data - in the confirmed case, ~40GB covering ~455,000 student records - used for extortion rather than operational disruption.
 - **Sector concentration.** Education institutions bore the brunt of the campaign, likely reflecting a combination of PeopleSoft's prevalence in higher-ed administrative systems and comparatively thinner security operations budgets in that sector relative to enterprise.
 - **Exploit-before-disclosure timing.** Active exploitation began around 2026-05-27, roughly two weeks before Oracle's advisory landed on 2026-06-10 - the group operated in the gap between "vulnerability exists" and "vulnerability is public and patchable."
 

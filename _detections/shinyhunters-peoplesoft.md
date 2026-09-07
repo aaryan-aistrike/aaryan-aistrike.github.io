@@ -7,7 +7,7 @@ layout: default
 
 Beginning around 2026-05-27, the extortion group tracked as **ShinyHunters** (with the underlying exploitation activity attributed by Mandiant to **UNC6240**) began exploiting **CVE-2026-35273**, a critical (CVSS 9.8) remote-code-execution flaw in Oracle PeopleSoft Enterprise PeopleTools. The vulnerability required no authentication and no user interaction - network access to the exposed HTTP service was enough to take over the server. Oracle did not publish an advisory until 2026-06-10, meaning the flaw was actively exploited as a zero-day for roughly two weeks before a patch or public guidance existed.
 
-By the time the campaign was disclosed, ShinyHunters had exploited more than 300 PeopleSoft instances across 100+ organizations worldwide, using automated scripts capable of scanning and compromising exposed environments at scale. The education sector was hit hardest - the only publicly confirmed victim as of 2026-06-11 was a university where more than 40 GB of data covering roughly 500,000 current and former students (across UK, Malaysia, and China campuses) was published.
+By the time the campaign was disclosed, ShinyHunters had exploited more than 300 PeopleSoft instances across 100+ organizations worldwide, using automated scripts capable of scanning and compromising exposed environments at scale. The education sector was hit hardest - the only publicly confirmed victim as of 2026-06-11 was a university where more than 40 GB of data covering roughly 455,000 current and former students (across UK, Malaysia, and China campuses) was published.
 
 ## Why this matters for detection
 

@@ -5,7 +5,7 @@ layout: default
 
 ## Overview
 
-Windows Management Instrumentation ([MITRE ATT&CK T1047](https://attack.mitre.org/techniques/T1047/), often paired with [T1021.006](https://attack.mitre.org/techniques/T1021/006/)) is a built-in, "living off the land" mechanism attackers use for remote process execution and lateral movement - no additional tooling needs to be dropped on disk, and traffic rides over legitimate DCOM/WMI ports (135 + a dynamic RPC port), making it harder to distinguish from admin activity than SMB-based methods like PsExec.
+Windows Management Instrumentation ([MITRE ATT&CK T1047](https://attack.mitre.org/techniques/T1047/), often paired with [T1021.003](https://attack.mitre.org/techniques/T1021/003/)) is a built-in, "living off the land" mechanism attackers use for remote process execution and lateral movement - no additional tooling needs to be dropped on disk, and traffic rides over legitimate DCOM/WMI ports (135 + a dynamic RPC port), making it harder to distinguish from admin activity than SMB-based methods like PsExec.
 
 The most common malicious pattern is a **`wmiprvse.exe`-spawned child process** on the target host, initiated remotely via `Win32_Process.Create` - frequently used to launch `cmd.exe`, `powershell.exe`, or a staged payload.
 
@@ -34,14 +34,14 @@ description: >-
   systems administration.
 references:
   - https://attack.mitre.org/techniques/T1047/
-  - https://attack.mitre.org/techniques/T1021/006/
+  - https://attack.mitre.org/techniques/T1021/003/
 author: Aryan
 date: 2026-08-23T00:00:00.000Z
 tags:
   - attack.execution
   - attack.lateral_movement
   - attack.t1047
-  - attack.t1021.006
+  - attack.t1021.003
 logsource:
   category: process_creation
   product: windows

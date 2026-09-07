@@ -5,16 +5,16 @@ layout: default
 
 ## Who they are
 
-**Lazarus Group**, North Korea's long-running state-sponsored threat actor, runs "Operation Dream Job" - a years-long campaign umbrella built on fake recruiter personas rather than a single one-off lure. In a wave Check Point Research observed since at least early July 2026, the group impersonated recruiters from **Enveil**, a real US privacy-enhancing-technology company, to approach employees at defense, aerospace, and aviation organizations across Europe and India - then paired that social-engineering trust with a genuine Windows zero-day rather than a commodity exploit.
+**Lazarus Group**, North Korea's long-running state-sponsored threat actor, runs "Operation Dream Job" - a years-long campaign umbrella built on fake recruiter personas rather than a single one-off lure. In a wave Check Point Research observed since at least early July 2026, the group impersonated recruiters from **Enveil**, a real US privacy-enhancing-technology company, to approach employees at defense, aerospace, and aviation organizations across Europe, India, and Brazil - then paired that social-engineering trust with a genuine Windows zero-day rather than a commodity exploit.
 
 ## Behavioral pattern
 
 - **Recruiter-lure social engineering impersonating a real, named company.** Posing as Enveil recruiters lends outreach a credibility that generic front companies don't have, since a target can (and often does) verify the company is real - just not that the specific contact is.
-- **Trojanized PDF viewer as the delivery vehicle.** Targets are led to install "SecurityPDF," a modified PDF viewer that opens attacker-crafted documents and executes a previously undocumented backdoor Check Point named **Troy**.
-- **A genuine unpatched kernel vulnerability, not Bring-Your-Own-Vulnerable-Driver.** Troy exploits **CVE-2026-68820**, a use-after-free race condition in `AFD.sys` (the Ancillary Function Driver for Winsock), to escalate from limited user access to SYSTEM - notable because Lazarus' earlier FudModule campaigns typically dropped a vulnerable third-party driver to abuse; here they used a real, previously unknown flaw in a built-in Windows driver.
+- **Trojanized PDF viewer as the delivery vehicle.** Targets are led to install "SecurityPDF," a modified PDF viewer that opens attacker-crafted documents and executes a previously undocumented backdoor Check Point named **Troy**, which in turn delivers a separate MISTPEN loader/FudModule chain for privilege escalation.
+- **A genuine unpatched kernel vulnerability, not Bring-Your-Own-Vulnerable-Driver.** That MISTPEN/FudModule chain exploits **CVE-2026-68820**, a use-after-free race condition in `AFD.sys` (the Ancillary Function Driver for Winsock), to escalate from limited user access to SYSTEM - a genuine, previously unknown flaw in a built-in Windows driver rather than an abused third-party one. This continues a pattern from Lazarus' prior FudModule campaign (Feb 2024, CVE-2024-21338), which likewise used a real built-in-driver zero-day rather than BYOVD.
 - **FudModule v3.1 for defender-blinding, not data theft.** Post-exploitation, the group deploys the latest version of its kernel-mode rootkit to tear down telemetry callbacks, kill roughly 94 ETW providers, suppress crash dumps, and disable security products generically - prioritizing staying invisible over immediate objectives.
 - **Fast, disclosed timeline.** Check Point reported the vulnerability to Microsoft on 2026-07-28; Microsoft confirmed it three days later and shipped a fix on 2026-08-11 as part of that month's Patch Tuesday - meaning the flaw was exploited in the wild for roughly six weeks before any patch existed.
-- **Consistent sector focus.** Defense, aerospace, and aviation organizations in Europe and India - continuing Lazarus' long-standing interest in the defense-industrial base via fabricated recruitment.
+- **Consistent sector focus.** Defense, aerospace, and aviation organizations in Europe, India, and Brazil - continuing Lazarus' long-standing interest in the defense-industrial base via fabricated recruitment.
 
 ## What this means for defenders
 
