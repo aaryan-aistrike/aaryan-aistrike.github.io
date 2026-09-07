@@ -145,6 +145,12 @@
     position: relative;
     transition: border-color 0.2s ease, transform 0.2s ease;
 
+    // the [hidden] attribute (set by the detections filter chips' JS) ties
+    // in specificity with the class selector above and loses to it under
+    // normal cascade order - restate display:none explicitly so filtering
+    // actually hides non-matching tiles instead of just marking them.
+    &[hidden] { display: none; }
+
     &:hover {
         text-decoration: none;
         border-color: var(--accent-line);
