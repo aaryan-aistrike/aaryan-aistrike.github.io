@@ -161,7 +161,8 @@
       { text: 'Lazarus - AFD.sys zero-day (CVE-2026-68820), DPRK hit defense firms in Europe/India', from: 'Asia', to: 'Europe' },
       { text: 'INC Ransom - SonicWall SMA1000 zero-day chain (Russian-speaking group), hit US/Australia', from: 'Europe', to: 'Australia' },
       { text: 'Exilware/BraZetsu - Brazilian IAB targets LATAM & Iberia (Group-IB attribution)', from: 'South America', to: 'Europe' },
-      { text: 'UTA0560 - GRIMWEDGE via chained Chrome/Windows 0-days (China-linked, hit US NGOs)', from: 'Asia', to: 'North America' }
+      { text: 'UTA0560 - GRIMWEDGE via chained Chrome/Windows 0-days (China-linked, hit US NGOs)', from: 'Asia', to: 'North America' },
+      { text: 'PaperCut AI-agent swarm - Russian-speaking actor (GreyNoise), US hit hardest of 48 countries', from: 'Europe', to: 'North America' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
