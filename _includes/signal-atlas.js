@@ -162,7 +162,8 @@
       { text: 'INC Ransom - SonicWall SMA1000 zero-day chain (Russian-speaking group), hit US/Australia', from: 'Europe', to: 'Australia' },
       { text: 'Exilware/BraZetsu - Brazilian IAB targets LATAM & Iberia (Group-IB attribution)', from: 'South America', to: 'Europe' },
       { text: 'UTA0560 - GRIMWEDGE via chained Chrome/Windows 0-days (China-linked, hit US NGOs)', from: 'Asia', to: 'North America' },
-      { text: 'PaperCut AI-agent swarm - Russian-speaking actor (GreyNoise), US hit hardest of 48 countries', from: 'Europe', to: 'North America' }
+      { text: 'PaperCut AI-agent swarm - Russian-speaking actor (GreyNoise), US hit hardest of 48 countries', from: 'Europe', to: 'North America' },
+      { text: 'Mirage Kitten/UNC1549 - fake-recruiter RATs (Iran), hit aviation/fintech in Egypt & Ethiopia', from: 'Asia', to: 'Africa' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
