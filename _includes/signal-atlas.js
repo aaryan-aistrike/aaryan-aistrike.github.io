@@ -163,7 +163,8 @@
       { text: 'Exilware/BraZetsu - Brazilian IAB targets LATAM & Iberia (Group-IB attribution)', from: 'South America', to: 'Europe' },
       { text: 'UTA0560 - GRIMWEDGE via chained Chrome/Windows 0-days (China-linked, hit US NGOs)', from: 'Asia', to: 'North America' },
       { text: 'PaperCut AI-agent swarm - Russian-speaking actor (GreyNoise), US hit hardest of 48 countries', from: 'Europe', to: 'North America' },
-      { text: 'Mirage Kitten/UNC1549 - fake-recruiter RATs (Iran), hit aviation/fintech in Egypt & Ethiopia', from: 'Asia', to: 'Africa' }
+      { text: 'Mirage Kitten/UNC1549 - fake-recruiter RATs (Iran), hit aviation/fintech in Egypt & Ethiopia', from: 'Asia', to: 'Africa' },
+      { text: 'Qilin - PAN-OS/Check Point VPN 0-day (Russian-speaking RaaS), 370+ N. America hits H1 2026', from: 'Europe', to: 'North America' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
