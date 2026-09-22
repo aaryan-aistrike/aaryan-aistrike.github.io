@@ -166,7 +166,8 @@
       { text: 'Mirage Kitten/UNC1549 - fake-recruiter RATs (Iran), hit aviation/fintech in Egypt & Ethiopia', from: 'Asia', to: 'Africa' },
       { text: 'Qilin - PAN-OS/Check Point VPN 0-day (Russian-speaking RaaS), 370+ N. America hits H1 2026', from: 'Europe', to: 'North America' },
       { text: 'Clop - PTC Windchill/FlexPLM RCE (CIS-based group), hit GE, Philips, Shell (CVE-2026-12569)', from: 'Europe', to: 'North America' },
-      { text: 'PivotC2 - FortiOS CAPWAP RCE (Russian-speaking crew), 178 FortiGates hit, US worst-hit (SOCRadar)', from: 'Europe', to: 'North America' }
+      { text: 'PivotC2 - FortiOS CAPWAP RCE (Russian-speaking crew), 178 FortiGates hit, US worst-hit (SOCRadar)', from: 'Europe', to: 'North America' },
+      { text: 'CVE-2026-7273 - Zyxel GS1900 switch RCE (Chinese-speaking actor), 996 switches hit, Italy worst-hit (GreyNoise)', from: 'Asia', to: 'Europe' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
