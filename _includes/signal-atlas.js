@@ -168,7 +168,8 @@
       { text: 'Clop - PTC Windchill/FlexPLM RCE (CIS-based group), hit GE, Philips, Shell (CVE-2026-12569)', from: 'Europe', to: 'North America' },
       { text: 'PivotC2 - FortiOS CAPWAP RCE (Russian-speaking crew), 178 FortiGates hit, US worst-hit (SOCRadar)', from: 'Europe', to: 'North America' },
       { text: 'CVE-2026-7273 - Zyxel GS1900 switch RCE (Chinese-speaking actor), 996 switches hit, Italy worst-hit (GreyNoise)', from: 'Asia', to: 'Europe' },
-      { text: 'Orova - ESXi ransomware debut, victims concentrated in US with Hong Kong/Taiwan clusters', from: 'North America', to: 'Asia' }
+      { text: 'Orova - ESXi ransomware debut, victims concentrated in US with Hong Kong/Taiwan clusters', from: 'North America', to: 'Asia' },
+      { text: 'TA419 - BitB/AiTM phishing of US AI policy researchers (China-aligned, Proofpoint)', from: 'Asia', to: 'North America' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
