@@ -171,7 +171,8 @@
       { text: 'Orova - ESXi ransomware debut, victims concentrated in US with Hong Kong/Taiwan clusters', from: 'North America', to: 'Asia' },
       { text: 'TA419 - BitB/AiTM phishing of US AI policy researchers (China-aligned, Proofpoint)', from: 'Asia', to: 'North America' },
       { text: 'APT31/JungleBamboo - fake-Gemini LONGTALE extension, hit US mining/commodity firms', from: 'Asia', to: 'North America' },
-      { text: 'UAT-11587 - Antino backdoor abuses Outlook/OneDrive C2 (China-nexus, Cisco Talos)', from: 'Asia', to: 'Southeast Asia' }
+      { text: 'UAT-11587 - Antino backdoor abuses Outlook/OneDrive C2 (China-nexus, Cisco Talos)', from: 'Asia', to: 'Southeast Asia' },
+      { text: 'Warlock/Longlegs/Storm-2603 - SharePoint ToolShell RaaS (China-nexus), hit water/telecom/gov in LatAm (Symantec)', from: 'Asia', to: 'South America' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
