@@ -176,7 +176,8 @@
       { text: 'Nimbus Manticore/UNC1549 - wtsapi32.dll backdoor sideload (Iran IRGC), expands to Europe (Group-IB)', from: 'Asia', to: 'Europe' },
       { text: 'UNC6508 - INFINITERED REDCap backdoor (PRC-nexus, GTIG), hit US/Canada medical research', from: 'Asia', to: 'North America' },
       { text: 'Flax Typhoon - MicroScan scanning hit a US power company (China-nexus, DOJ/FBI seizure)', from: 'Asia', to: 'North America' },
-      { text: 'NetScaler 0-days - WHIPSHOT/SLAPSHOT implants hit govt/finance (N. America, Europe)', from: 'North America', to: 'Europe' }
+      { text: 'NetScaler 0-days - WHIPSHOT/SLAPSHOT implants hit govt/finance (N. America, Europe)', from: 'North America', to: 'Europe' },
+      { text: 'Star Blizzard - RedFlick/CosmicPulse backdoor (Russian FSB Centre 18), 100+ orgs hit in US/UK', from: 'Europe', to: 'North America' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
