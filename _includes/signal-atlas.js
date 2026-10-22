@@ -179,7 +179,8 @@
       { text: 'NetScaler 0-days - WHIPSHOT/SLAPSHOT implants hit govt/finance (N. America, Europe)', from: 'North America', to: 'Europe' },
       { text: 'Star Blizzard - RedFlick/CosmicPulse backdoor (Russian FSB Centre 18), 100+ orgs hit in US/UK', from: 'Europe', to: 'North America' },
       { text: 'Midnight Mimosa - Shenzhen-made Android firmware malware, 150+ countries hit', from: 'Asia', to: 'North America' },
-      { text: 'XWorm Reborn - leaked-builder RAT, financial-sector hits concentrated in India & Brazil (Netskope)', from: 'Asia', to: 'South America' }
+      { text: 'XWorm Reborn - leaked-builder RAT, financial-sector hits concentrated in India & Brazil (Netskope)', from: 'Asia', to: 'South America' },
+      { text: 'ARMORY CASTLE/UNC5221 - BeyondTrust 0-day, CVE-2026-102764 (PRC-nexus, Mandiant/GTIG)', from: 'Asia', to: 'North America' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
