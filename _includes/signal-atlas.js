@@ -183,7 +183,8 @@
       { text: 'ARMORY CASTLE/UNC5221 - BeyondTrust 0-day, CVE-2026-102764 (PRC-nexus, Mandiant/GTIG)', from: 'Asia', to: 'North America' },
       { text: 'INC Ransom/Tarnished Scorpius - CVE-2026-0257 GlobalProtect bypass (Unit 42)', from: 'Europe', to: 'North America' },
       { text: 'FamousSparrow - SparroWocky backdoor hits Latin American govts (China-aligned, ESET)', from: 'Asia', to: 'South America' },
-      { text: 'Iran MOIS - CHOSEN BRICK spyware, Telegram C2, hit UK/US/NL dissidents (NCSC/FBI/AIVD)', from: 'Asia', to: 'Europe' }
+      { text: 'Iran MOIS - CHOSEN BRICK spyware, Telegram C2, hit UK/US/NL dissidents (NCSC/FBI/AIVD)', from: 'Asia', to: 'Europe' },
+      { text: 'ARTEX - agentic AI pentest tool used vs S. Korean banks (China-linked, CrowdStrike)', from: 'Asia', to: 'Southeast Asia' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
