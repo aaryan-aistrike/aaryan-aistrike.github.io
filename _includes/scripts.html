@@ -50,12 +50,18 @@
 
   // auto-tag content pages (detections, actor profiles) for scroll-reveal, since their
   // markup is raw Markdown output and can't carry a .reveal class by hand. Pages that opt
-  // into the richer .spring-reveal system (below) handle their own reveal instead.
+  // into the richer .spring-reveal system (below) handle their own reveal instead. Skip any
+  // child that already contains its own .reveal descendants (e.g. .research-grid, whose
+  // individual .research-tile cards each reveal independently) - wrapping a tall, growing
+  // container in a single all-or-nothing reveal means the whole thing stays at opacity:0
+  // until 15% of its OWN height is on screen, which becomes unreachable once it's grown
+  // taller than the viewport (as the detections grid did past a few dozen cards).
   (function () {
     var content = document.querySelector('.page-content');
     if (!content) return;
     if (document.querySelector('.spring-reveal')) return;
     Array.prototype.forEach.call(content.children, function (el) {
+      if (el.querySelector('.reveal')) return;
       el.classList.add('reveal');
     });
   })();
