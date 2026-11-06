@@ -5,7 +5,7 @@ layout: default
 
 ## Overview
 
-**Orova** is a ransomware-as-a-service operation running a purpose-built Linux/ESXi encryptor, first documented by SonicWall Capture Labs in August 2026. Tracker data dates the earliest confirmed attack to 2026-05-03, and the group's dark-web leak site went live on 2026-08-04, posting 24 victims on debut day and 35 within 72 hours. The encryptor is a ~90KB statically linked, stripped ELF64 binary with no external dependencies, built around a Curve25519 key exchange and ChaCha20 file encryption. Its most distinctive trait is deliberate hypervisor targeting: the binary enumerates running virtual machines via `esxcli` and force-kills them before encrypting datastore contents, denying defenders any window to gracefully shut down or migrate VMs first. Claimed victims span manufacturing, retail/e-commerce, healthcare, technology, hospitality, and agriculture, concentrated in the US with recurring clusters in Hong Kong and Taiwan - consistent with opportunistic exploitation of exposed VPN/remote-access infrastructure rather than narrow vertical targeting.
+**Orova** is a ransomware-as-a-service operation running a purpose-built Linux/ESXi encryptor, first documented by SonicWall Capture Labs in August 2026. Tracker data dates the earliest confirmed attack to 2026-05-03, and the group's dark-web leak site went live on 2026-08-04 with a fast initial batch of victims followed by rapid additional listings. The encryptor is a ~90KB statically linked, stripped ELF64 binary with no external dependencies, built around a Curve25519 key exchange and ChaCha20 file encryption. Its most distinctive trait is deliberate hypervisor targeting: the binary enumerates running virtual machines via `esxcli` and force-kills them before encrypting datastore contents, denying defenders any window to gracefully shut down or migrate VMs first. Claimed victims span manufacturing, retail/e-commerce, healthcare, technology, hospitality, and agriculture, concentrated in the US with recurring clusters in Greater China and Taiwan - consistent with opportunistic exploitation of exposed VPN/remote-access infrastructure rather than narrow vertical targeting.
 
 ## Why this matters for detection
 
@@ -24,7 +24,6 @@ description: >-
 references:
   - https://www.sonicwall.com/blog/orova-a-new-linux-ransomware-targeting-esxi-hypervisors
   - https://www.watchguard.com/wgrd-security-hub/ransomware-tracker/orova
-  - https://www.kaspersky.com/blog/linux-vmware-esxi-ransomware-attacks/47988/
 author: Aryan
 date: 2026-09-27T00:00:00.000Z
 tags:

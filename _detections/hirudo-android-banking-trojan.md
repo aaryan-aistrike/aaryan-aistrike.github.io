@@ -34,7 +34,7 @@ tags:
   - attack.initial_access
   - attack.t1476
   - attack.defense_evasion
-  - attack.t1222
+  - attack.t1628
   - attack.collection
   - attack.t1417
   - attack.credential_access

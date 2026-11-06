@@ -5,7 +5,7 @@ layout: default
 
 ## Who they are
 
-**Qilin** (originally launched as **Agenda** in mid-2022 before rebranding) is a Russian-speaking ransomware-as-a-service operation that has ranked as the single most active ransomware group tracked by multiple threat intelligence firms for four consecutive quarters through Q2 2026. Between July 2025 and June 2026 the group claimed 1,403 victims on its leak site - an average of roughly 117 per month - and in a single 72-hour window in early June 2026 it posted 15 new victims across nine countries. Operators take a 15-20% cut and leave intrusion tradecraft to affiliates, which produces meaningfully different attack chains from one Qilin victim to the next even though the encryptor and extortion infrastructure are shared.
+**Qilin** (originally launched as **Agenda** in mid-2022 before rebranding) is a Russian-speaking ransomware-as-a-service operation that has ranked as the single most active ransomware group tracked by multiple threat intelligence firms for four consecutive quarters through Q2 2026. Trackers report somewhat different but broadly consistent counts for overlapping windows - roughly 1,300-1,500 victims over various trailing twelve-month periods through mid-2026, per multiple trackers. Operators take a 15-20% cut and leave intrusion tradecraft to affiliates, which produces meaningfully different attack chains from one Qilin victim to the next even though the encryptor and extortion infrastructure are shared.
 
 ## Behavioral pattern
 

@@ -34,7 +34,7 @@ tags:
   - attack.initial_access
   - attack.t1528
   - attack.persistence
-  - attack.t1098.002
+  - attack.t1098.005
   - attack.collection
   - attack.t1114.003
 logsource:

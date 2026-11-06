@@ -33,7 +33,7 @@ date: 2026-09-28T00:00:00.000Z
 tags:
   - attack.impact
   - attack.t1490
-  - attack.credential_access
+  - attack.initial_access
   - attack.t1078
   - attack.privilege_escalation
 logsource:

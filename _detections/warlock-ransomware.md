@@ -33,10 +33,10 @@ date: 2026-10-06T00:00:00.000Z
 tags:
   - attack.defense_evasion
   - attack.t1562.001
-  - attack.persistence
+  - attack.defense_evasion
   - attack.t1484.001
-  - attack.lateral_movement
-  - attack.t1021
+  - attack.command_and_control
+  - attack.t1219
   - attack.impact
   - attack.t1486
 logsource:

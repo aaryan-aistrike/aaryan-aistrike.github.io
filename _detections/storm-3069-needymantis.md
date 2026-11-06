@@ -38,7 +38,7 @@ tags:
   - attack.t1071.001
   - attack.t1573
   - attack.persistence
-  - attack.t1547
+  - attack.t1543.003
 logsource:
   category: image_load
   product: windows

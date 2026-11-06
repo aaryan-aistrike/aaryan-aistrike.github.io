@@ -7,7 +7,7 @@ layout: default
 
 **ARMORY CASTLE** is a suspected PRC-nexus espionage actor that Google's Threat Intelligence Group (GTIG) and Mandiant have tracked since at least October 2023, previously under the designation **UNC5221**. CrowdStrike tracks the same cluster as **WARP PANDA**. The group has a sustained track record of exploiting edge-appliance vulnerabilities - most notably a string of Ivanti product flaws - rather than relying on phishing or commodity malware for initial access.
 
-In its latest campaign, ARMORY CASTLE exploited **CVE-2026-102764**, a critical (CVSS 9.3) unauthenticated arbitrary-file-upload flaw in **BeyondTrust Remote Support** (formerly Bomgar), as a zero-day starting in late August 2026. BeyondTrust patched SaaS tenants on October 9 and shipped BT26-05 for self-hosted customers shortly after; GTIG and BeyondTrust jointly disclosed the campaign on October 15, 2026. BeyondTrust assesses the ARMORY CASTLE attribution with moderate-to-high confidence based on tooling and TTP overlap with prior tracked activity.
+In its latest campaign, ARMORY CASTLE exploited **CVE-2026-102764**, a critical (CVSS 9.3) unauthenticated authentication-bypass-by-spoofing flaw (CWE-290) in **BeyondTrust Remote Support** (formerly Bomgar) that enables arbitrary file upload once bypassed, as a zero-day starting in late August 2026. BeyondTrust patched SaaS tenants on October 9 and shipped BT26-05 for self-hosted customers shortly after; GTIG and BeyondTrust jointly disclosed the campaign on October 15, 2026. BeyondTrust assesses the ARMORY CASTLE attribution with moderate-to-high confidence based on tooling and TTP overlap with prior tracked activity.
 
 ## Behavioral pattern
 

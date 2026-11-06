@@ -7,7 +7,7 @@ layout: default
 
 **Qilin**, tracked as the most active ransomware-as-a-service operation of 2026, has been observed by Cisco Talos and independently confirmed by BleepingComputer running its **Linux ELF encryptor inside the Windows Subsystem for Linux (WSL)** on fully Windows victim hosts. Affiliates transfer the ELF binary onto a compromised endpoint - commonly via WinSCP - then launch it through legitimate remote-management software, specifically Splashtop's `SRManager.exe`, which spawns `wsl.exe` to execute the Linux payload. The encryptor can then read and encrypt files across the Windows filesystem (mounted under `/mnt/c/` inside WSL) while running in an execution context that most Windows-native EDR tooling does not inspect with the same depth as native PE processes.
 
-This technique follows the group's typical initial-access pattern of exploiting internet-facing VPN/firewall appliances - CVE-2026-0257 (PAN-OS GlobalProtect authentication bypass) and CVE-2026-50751 (Check Point VPN authentication bypass) have both been documented as Qilin affiliate entry points in 2026 - followed by LSASS/NTDS credential harvesting, PsExec/RDP lateral movement, and Windows event log clearing immediately before encryption.
+This technique follows the group's typical initial-access pattern of exploiting internet-facing VPN/firewall appliances - CVE-2026-0257 (PAN-OS GlobalProtect authentication bypass) has been documented as a Qilin affiliate entry point in 2026, and CVE-2026-50751 (Check Point VPN authentication bypass) is reportedly linked to a Qilin affiliate per a single source - followed by LSASS/NTDS credential harvesting, PsExec/RDP lateral movement, and Windows event log clearing immediately before encryption.
 
 ## Why this matters for detection
 
@@ -34,7 +34,7 @@ author: Aryan
 date: 2026-09-16T00:00:00.000Z
 tags:
   - attack.defense_evasion
-  - attack.t1202
+  - attack.t1564.006
   - attack.execution
   - attack.t1059.004
   - attack.impact

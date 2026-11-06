@@ -5,7 +5,7 @@ layout: default
 
 ## Overview
 
-**Settra** is a data-extortion and ransomware operation first observed in June 2026 that had publicly claimed 64 victims across 19 countries by September 7, 2026, with 16 of those disclosed in the prior 30 days. Rather than relying on a novel exploit or custom loader for initial access, MoxFive's incident-response tracking found the group entering victim environments through **compromised, valid VPN credentials** - with roughly a third of known victim domains traceable to prior infostealer log exposure. From that foothold, Settra abuses valid accounts to move internally, stages data broadly (financial records, PII, tax/payroll documentation, internal correspondence, contracts) over an average dwell time of roughly 20 days, then applies double-extortion pressure: encryption plus a long-form, AI-assisted investigative-style writeup published per victim on its Tor leak site, with negotiation conducted over Tox.
+**Settra** is a data-extortion and ransomware operation first observed in June 2026 that had publicly claimed dozens of victims across multiple countries by September 7, 2026. Rather than relying on a novel exploit or custom loader for initial access, MoxFive's incident-response tracking found the group entering victim environments through **compromised, valid VPN credentials** - with roughly a third of known victim domains traceable to prior infostealer log exposure. From that foothold, Settra abuses valid accounts to move internally, stages data broadly (financial records, PII, tax/payroll documentation, internal correspondence, contracts) over an average dwell time of roughly 20 days, then applies double-extortion pressure: encryption plus a long-form, investigative-style writeup published per victim on its Tor leak site, with negotiation conducted over Tox.
 
 ## Why this matters for detection
 
@@ -32,8 +32,6 @@ date: 2026-09-07T00:00:00.000Z
 tags:
   - attack.initial_access
   - attack.t1078
-  - attack.credential_access
-  - attack.t1552.001
   - attack.lateral_movement
   - attack.t1021.001
   - attack.t1021.002

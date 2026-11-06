@@ -9,7 +9,7 @@ layout: default
 
 ## Behavioral pattern
 
-- **Edge-device exploitation over endpoint malware.** Initial access came from exploiting CVE-2025-64446 (FortiWeb) and CVE-2026-0257 (Palo Alto GlobalProtect auth-bypass cookie forgery, also documented on this site as exploited by Qilin and INC Ransom), plus brute-forcing FortiGate SSL VPN logins - no phishing or custom loader was required to get a foothold.
+- **Edge-device exploitation over endpoint malware.** Initial access came from exploiting CVE-2025-64446 (FortiWeb) and CVE-2026-0257 (Palo Alto GlobalProtect auth-bypass cookie forgery, also documented on this site as exploited by Qilin and INC Ransom), plus brute-forcing the FortiGate REST API - with CVE-2019-6693 separately used to decrypt stolen FortiGate configuration backups. No phishing or custom loader was required to get a foothold.
 - **Dual RMM/C2 infrastructure.** A self-hosted MeshCentral server at `mesh[.]buttruyen[.]com` managed roughly 84 compromised endpoints across 28 device groups, with agent binaries hosted separately at `agent[.]afahimsa[.]top`. AdaptixC2 ran alongside it as a second command-and-control channel.
 - **Deliberately permissive agent onboarding.** The MeshCentral deployment was configured with `agentAutoApprove`, `agentAutoCreateDevice`, `IgnoreAgentHashCheck`, and `agentInviteCodes` enabled - minimizing the manual review step normally required to add a new victim device to the C2 fleet.
 - **Commercial RMM abuse for persistence.** Atera, AnyDesk, Teramind, and ngrok were layered on top of the actor's own infrastructure, letting access blend into traffic patterns that look like legitimate remote support or monitoring tooling.

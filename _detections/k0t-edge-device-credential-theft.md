@@ -5,7 +5,7 @@ layout: default
 
 ## Overview
 
-Group-IB and NyxLab published a joint investigation in October 2026, "Stray Cat, Open Doors: How k0t Wanders Through the Network Edge," documenting a large-scale credential-harvesting campaign run by an initial access broker tracked as **k0t** (aliases: CryptoFeel, Member19, QazWsxShop) and active since 2025-10-22. Between February and June 2026, the actor targeted internet-exposed FortiGate, FortiWeb, and Palo Alto GlobalProtect appliances - exploiting CVE-2025-64446 against FortiWeb, brute-forcing FortiGate SSL VPN logins, and using CVE-2026-0257 against GlobalProtect - and exposed more than 70,000 credentials drawn from network device logins and LDAP dumps.
+Group-IB and NyxLab published a joint investigation in October 2026, "Stray Cat, Open Doors: How k0t Wanders Through the Network Edge," documenting a large-scale credential-harvesting campaign run by an initial access broker tracked as **k0t** (aliases: CryptoFeel, Member19, QazWsxShop) and active since 2025-10-22. Between February and June 2026, the actor targeted internet-exposed FortiGate, FortiWeb, and Palo Alto GlobalProtect appliances - exploiting CVE-2025-64446 against FortiWeb, brute-forcing the FortiGate REST API (with CVE-2019-6693 separately used to decrypt stolen FortiGate configuration backups), and using CVE-2026-0257 against GlobalProtect - and exposed more than 70,000 credentials drawn from network device logins and LDAP dumps.
 
 For persistence, k0t ran a self-hosted MeshCentral server (`mesh[.]buttruyen[.]com`, agents hosted separately at `agent[.]afahimsa[.]top`) configured to auto-approve new agents, alongside AdaptixC2 as a second C2 channel, and layered commercial RMM tools - Atera, AnyDesk, Teramind, and ngrok - on top for additional access. Data was exfiltrated with Rclone to Wasabi and MEGA cloud storage. Victims subsequently appeared on the Qilin and The Gentlemen ransomware leak sites, though Group-IB stresses that link is unconfirmed; the campaign also showed negligible credential overlap with the separate FortiBleed harvesting dataset.
 
@@ -67,7 +67,7 @@ level: high
 
 ## Prevention
 
-- Patch FortiWeb against CVE-2025-64446 and GlobalProtect against CVE-2026-0257 without delay, and enforce MFA plus source-IP restriction on FortiGate SSL VPN to blunt brute-force attempts.
+- Patch FortiWeb against CVE-2025-64446 and GlobalProtect against CVE-2026-0257 without delay, and enforce MFA plus source-IP restriction on the FortiGate REST API to blunt brute-force attempts.
 - Maintain an allowlist of approved RMM tools per environment and alert on any RMM binary - MeshAgent, AdaptixC2, Atera, AnyDesk, Teramind, ngrok - installing outside that list, especially on servers adjacent to edge appliances.
 - Monitor outbound traffic to Wasabi and MEGA API endpoints from hosts that have no legitimate business reason to use either service, and treat Rclone invocation against either as worth investigating regardless of volume.
 - Treat any confirmed compromise of an internet-facing FortiGate, FortiWeb, or GlobalProtect appliance as a precursor to broker-sold access rather than a single named ransomware brand - this campaign's victims fed more than one leak site.

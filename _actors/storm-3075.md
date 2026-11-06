@@ -11,9 +11,9 @@ layout: default
 
 - **AI-brand impersonation at scale.** Uses fictitious product names such as "Awesome AI Windows Plugin" and "Flux Pro AI," plus installers spoofing DeepSeek, ChatGPT, and Claude branding, to make malicious downloads look like legitimate AI tooling.
 - **Malvertising + SEO poisoning.** Places malicious ads on free movie-streaming sites and poisons search results/GitHub so poisoned download pages and repos surface ahead of legitimate sources.
-- **Exploiting AI news cycles in near-real-time.** Within roughly 45 minutes of DeepSeek publicly previewing its V4 model in April 2026, Storm-3075 had already stood up a fake "DeepSeek-V4" GitHub organization loaded with stolen branding to distribute a trojanized "release."
+- **Exploiting AI news cycles in near-real-time.** Within roughly 45 minutes of DeepSeek publicly previewing its V4 model in April 2026, a fake "DeepSeek-V4" GitHub organization went up loaded with stolen branding to distribute a trojanized "release" - part of the same broader AI-brand-abuse ecosystem Microsoft attributes to Storm-3075's general pattern, though Microsoft's reporting does not tie this specific incident to Storm-3075 by name.
 - **Code-signing-as-a-service.** Final payloads are signed using certificates obtained through Fox Tempest's malware-signing operation, letting the binaries pass signature-based trust checks that many endpoint controls rely on.
-- **Broker, not operator.** Distributes final payloads - Vidar Stealer, Lumma Stealer, Hijack Loader, Oyster, and SilabRAT - on behalf of multiple downstream actors rather than monetizing the access itself.
+- **Broker, not operator.** Distributes final payloads - Vidar Stealer, Lumma Stealer, Hijack Loader, and Oyster - on behalf of multiple downstream actors rather than monetizing the access itself.
 - **Real scale.** A single campaign wave (2026-03-10 to 2026-03-14) built around the "Awesome AI Windows Plugin" lure reached over 66,000 devices globally, with Japan, South Africa, the United States, and France hit hardest.
 
 ## What this means for defenders

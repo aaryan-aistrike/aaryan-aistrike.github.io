@@ -5,7 +5,7 @@ layout: default
 
 ## Who they are
 
-**Settra** is a ransomware and data-extortion operation first observed in June 2026, with its earliest disclosed victims dating to June 26-28, 2026. It has grown quickly since: as of September 7, 2026, its Tor-hosted leak site had publicly claimed 64 victims across 19 countries, including 16 in the preceding 30 days alone. Known victims cluster in Technology (22%), Professional Services (16%), and Manufacturing (14%). No confirmed link ties Settra to a previously known ransomware family or affiliate program - researchers assess it's either a newly launched independent operation or a rebranded affiliate cluster.
+**Settra** is a ransomware and data-extortion operation first observed in June 2026, with its earliest disclosed victims dating to June 26-28, 2026. It has grown quickly since: by September 7, 2026, its Tor-hosted leak site had publicly claimed dozens of victims across multiple countries. Known victims cluster in Professional Services (18%), Technology (17%), and Manufacturing (13%). No confirmed link ties Settra to a previously known ransomware family or affiliate program - researchers assess it's either a newly launched independent operation or a rebranded affiliate cluster.
 
 ## Behavioral pattern
 
