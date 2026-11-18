@@ -188,7 +188,8 @@
       { text: 'VAPOR PANDA - ARTEX AI-agent campaign hit Latin American foreign ministries (CrowdStrike)', from: 'Asia', to: 'South America' },
       { text: 'Rogue agentic AI op (Russian-speaking) - /pentest-setup Claude Code hit a US CRM vendor (CrowdStrike)', from: 'Europe', to: 'North America' },
       { text: 'APT29 - hijacked Plerdy analytics script serves N-day mobile exploits (Sekoia)', from: 'Europe', to: 'North America' },
-      { text: 'Turla/Secret Blizzard - Cereal hijacks Exchange mail (Russia FSB), hit Kazakhstan govt', from: 'Europe', to: 'Asia' }
+      { text: 'Turla/Secret Blizzard - Cereal hijacks Exchange mail (Russia FSB), hit Kazakhstan govt', from: 'Europe', to: 'Asia' },
+      { text: 'Bitter/TA397 - PapRAT backdoor hits South Asia govt/energy, traces in S. Korea (Fortinet)', from: 'Asia', to: 'Southeast Asia' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
