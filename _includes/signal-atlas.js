@@ -189,7 +189,8 @@
       { text: 'Rogue agentic AI op (Russian-speaking) - /pentest-setup Claude Code hit a US CRM vendor (CrowdStrike)', from: 'Europe', to: 'North America' },
       { text: 'APT29 - hijacked Plerdy analytics script serves N-day mobile exploits (Sekoia)', from: 'Europe', to: 'North America' },
       { text: 'Turla/Secret Blizzard - Cereal hijacks Exchange mail (Russia FSB), hit Kazakhstan govt', from: 'Europe', to: 'Asia' },
-      { text: 'Bitter/TA397 - PapRAT backdoor hits South Asia govt/energy, traces in S. Korea (Fortinet)', from: 'Asia', to: 'Southeast Asia' }
+      { text: 'Bitter/TA397 - PapRAT backdoor hits South Asia govt/energy, traces in S. Korea (Fortinet)', from: 'Asia', to: 'Southeast Asia' },
+      { text: 'ShadowCloud - GitDoor/GraphDoor cloud C2 (Chinese-speaking actor suspected, Kaspersky)', from: 'Asia', to: 'Africa' }
     ];
 
     // only spawn between nodes that are currently on the visible hemisphere -
