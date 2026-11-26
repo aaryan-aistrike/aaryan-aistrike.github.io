@@ -1,0 +1,27 @@
+---
+title: "HYFLOCK - Emerging RaaS with a Self-Destructing Encryption Flaw"
+layout: default
+---
+
+## Who they are
+
+HYFLOCK is a ransomware-as-a-service operation that surfaced on underground forums around March 2026 and began recruiting affiliates by May 2026, under the handle "hyflock123." The recruitment pitch claimed prior affiliate experience with both LockBit and Qilin - a lineage Flare's researchers could not independently corroborate, since it's a self-reported claim rather than a vendor attribution. Check Point Research traced the malware itself through four distinct build generations between roughly April and October 2026, culminating in an October 17, 2026 build with expanded deployment behavior - the version Check Point's deepest technical analysis focuses on.
+
+Leak-site victim counts vary meaningfully by tracker (WatchGuard counted 8 confirmed victims as of its tracking window; SOCRadar and VULONE put cumulative claims closer to 28-32 since October 2026), which is itself a useful reminder that ransomware "victim counts" from different trackers are not apples-to-apples. Named victims surfaced via leak-site monitoring include Samsung Group and an Australian accountancy firm.
+
+## Behavioral pattern
+
+- **Rapid build iteration.** Four generations in roughly six months: an April Rust-based Windows encryptor core, a July build that split the loader into a separate component, and an October 17 build that changed deployment mechanics, added scheduled-task-based persistence, and expanded network-share interaction - consistent with an operation still actively hardening its tooling rather than a mature, stable codebase.
+- **Masquerading staging path.** The October build stages itself under `ProgramData\EdgeUpdate_<suffix>\eu.exe` with a companion `eu.cfg` config file - naming chosen to blend in with legitimate Microsoft Edge auto-update infrastructure.
+- **Algorithm-claim vs. reality gap.** The ransom note claims HC-128 encryption, but WatchGuard's binary analysis found a hybrid AES-128-CTR + RSA-4096 scheme actually in use - a mismatch between what the extortion note tells victims and what the malware does, which matters for anyone trying to assess recoverability from the note alone.
+- **A verifiable implementation flaw.** In the October 17 build, Check Point found the encryption routine only processes the first 4,096 bytes of larger files, leaving the remainder of file content untouched and intact. Testing against Office documents (which are ZIP containers of many internal parts) recovered 73 internal components from 7 encrypted test files. No general decryption tool was released, since the encryption key itself wasn't recovered - but it demonstrates the build's encryption coverage is incomplete rather than cryptographically sound.
+- **A worse flaw in a sibling build.** A separate October build Check Point examined had a different, more damaging processing defect: one that could permanently destroy portions of files rather than just leave them partially encrypted - i.e., a case where paying wouldn't even restore what the ransomware itself damaged.
+- **Standard affiliate RaaS extortion playbook.** Per-directory ransom notes ("How to Restore My Files.html") warn victims not to reboot, not to use third-party recovery tools, and not to modify or delete encrypted files - standard anti-recovery pressure tactics layered on top of the technical flaws above.
+
+## What this means for defenders
+
+HYFLOCK is a useful case study in treating ransomware-note claims skeptically: the HC-128 claim in the note doesn't match the actual AES-CTR/RSA implementation, and the October 17 build's partial (4KB-only) encryption of larger files means file recovery may be possible from the untouched remainder without ever obtaining the attacker's key - something worth checking before paying or writing off data as lost. Operationally, the `ProgramData\EdgeUpdate_*` staging path masquerading as a legitimate updater, combined with new scheduled-task registration, is a concrete, checkable artifact in environments that don't already baseline legitimate Edge update behavior. Because the group is young and iterating quickly, expect build behavior (extensions, marker strings, staging paths) to keep shifting between now and whenever the operation either stabilizes or folds.
+
+*See also: [HYFLOCK - Partial-Encryption Flaw and Edge-Updater Masquerade](/detections/hyflock-ransomware/) for detection logic.*
+
+**Sources:** [Check Point Research](https://blog.checkpoint.com/security/hyflock-ransomware-evolves-with-new-builds-and-encryption-weaknesses/), [Cyber Security News](https://cybersecuritynews.com/hyflock-ransomware/), [GBHackers](https://gbhackers.com/hyflock-ransomware/), [CyberPress](https://cyberpress.org/hyflock-flaw-enables-recovery/), [WatchGuard Ransomware Tracker](https://www.watchguard.com/wgrd-security-hub/ransomware-tracker/hyflock), [VULONE](https://vulone.com/ransomware/hyflock), [SOCRadar](https://ransomware.socradar.io/victims/samsung-group-hyflock-7bb853ea), [Cyber Daily](https://www.cyberdaily.au/security/14487-exclusive-darwin-based-accountancy-firm-listed-by-hyflock-ransomware), [PCrisk](https://www.pcrisk.com/removal-guides/35596-hyflock-ransomware), [GridinSoft](https://blog.gridinsoft.com/hyflock-ransomware/), [Flare (via Cyber Security News ecosystem report)](https://cybersecuritynews.com/ransomware-ecosystem-consolidates/)
